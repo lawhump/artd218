@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ex1</title>
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Playfair+Display|Roboto+Condensed:300,400,700" rel="stylesheet"> -->
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="dist/styles/main.css">
+    <!-- endbuild -->
+
+  </head>
+  <body>
+    <!--[if lt IE 10]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <nav class="navbar navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="left col-md-2">
+            <!-- I got this icon from Ralf Schmitzer on the Noun Project -->
+            <a href="#"><img src="dist/images/nav/icon.png" alt=""></a>
+          </div>
+
+          <div class="center col-md-8">
+            <ul>
+              <li><h5>all</h5></li>
+              <li><h5 class="active">breakfast</h5></li>
+              <li><h5 class="active">lunch</h5></li>
+              <li><h5 class="active">dinner</h5></li>
+              <li><h5>snack</h5></li>
+            </ul>
+          </div>
+
+          <div class="right col-md-2">
+            <!-- I got this icon from Gregor Črešnar on the Noun Project -->
+            <a href="#"><img src="dist/images/nav/list.png" alt=""></a>
+            <a href="#"><img src="dist/images/nav/grid-icon.png" alt=""></a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="meals">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="meal col-lg-6">
+            <div class="height-0" data-meal-name="treat-yo-self"></div>
+            <div class="description">
+              <h5>lunch . dinner</h5>
+              <h1>Wined &amp; Dined</h1>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="row">
+              <div class="meal col-lg-12 margin">
+                <div class="height-3" data-meal-name="super-sami"></div>
+                <div class="description">
+                  <h5>lunch</h5>
+                  <h1>Super Sami</h1>
+                </div>
+              </div>
+              <div class="meal col-lg-6">
+                <div class="height-2" data-meal-name="sassy-salad"></div>
+                <div class="description">
+                  <h5>lunch . dinner</h5>
+                  <h1>Sassy Salad</h1>
+                </div>
+              </div>
+              <div class="meal col-lg-6">
+                <div class="height-2" data-meal-name="big-burg"></div>
+                <div class="description">
+                  <h5>lunch . dinner</h5>
+                  <h1>Big Burg</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="meal col-lg-4">
+            <div class="height-4" data-meal-name="sick-day-solver"></div>
+            <div class="description">
+              <h5>lunch . dinner</h5>
+              <h1>sick day solver</h1>
+            </div>
+          </div>
+          <div class="meal col-lg-4">
+            <div class="height-4" data-meal-name="breakfast-n-bed"></div>
+            <div class="description">
+              <h5>breakfast . lunch</h5>
+              <h1>breakfast n bed</h1>
+            </div>
+          </div>
+          <div class="meal col-lg-4">
+            <div class="height-4" data-meal-name="fancy-fries"></div>
+            <div class="description">
+              <h5>lunch . snack</h5>
+              <h1>fancy fries</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="row">
+              <div class="col-lg-12 meal margin">
+                <div class="height-3" data-meal-name="yes-yos"></div>
+                <div class="description">
+                  <h5>snack</h5>
+                  <h1>Yes, Yo's</h1>
+                </div>
+              </div>
+              <div class="col-lg-12 meal">
+                <div class="height-3" data-meal-name="lil-macs"></div>
+                <div class="description">
+                  <h5>snack</h5>
+                  <h1>lil macs</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="meal col-lg-6">
+            <div class="height-1" data-meal-name="stacks"></div>
+            <div class="description">
+              <h5>breakfast</h5>
+              <h1>Stacks</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <!-- i got this from the Noun Project as well -->
+      <img src="dist/images/icons/footer.png" alt="">
+      <h5>make something that makes you :)</h5>
+    </footer>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='https://www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script>
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js scripts/plugins.js -->
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/affix.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/alert.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/dropdown.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tooltip.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/modal.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/button.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/popover.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/carousel.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/scrollspy.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js scripts/main.js -->
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
+    <!-- <script src="https://unpkg.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script> -->
+  </body>
+</html>

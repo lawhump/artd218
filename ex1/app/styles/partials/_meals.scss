@@ -1,0 +1,157 @@
+.meals {
+
+  figure {
+    margin-bottom: 3rem;
+  }
+
+  .main {
+    height: 105%;
+
+    img {
+      height: 100%;
+    }
+  }
+
+  .height-0 {
+    height: 95vh;
+  }
+
+  .height-1 {
+    // height: 85vh;
+    height: 83.3vh
+  }
+
+  .height-2 {
+    // height: 46.7vh;
+    height: 51.9vh;
+  }
+
+  .height-3 {
+    // height: 35vh;
+    height: 40vh;
+  }
+
+  .height-4 {
+    height: 37.5vh;
+  }
+
+
+
+  .description {
+    left: 50%;
+    max-width: 35rem;
+    position: absolute;
+    text-align: center;
+    top: 85%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+
+    h1 {
+      position: relative;
+
+      &:before {
+        background-color: #D8D8D8;
+        content: ' ';
+        height: .1rem;
+        left: 50%;
+        position: absolute;
+        top: -35%;
+        transform: translateX(-50%);
+        width: 100%;
+      }
+    }
+  }
+}
+
+.meal {
+  position: relative;
+}
+
+[data-meal-name] {
+  background-size: cover !important;
+  position: relative;
+
+  &:after {
+    background-image: linear-gradient(-180deg, rgba(255,255,255,0.00) 0%, rgba(0,0,0,0.60) 100%);
+    content: ' ';
+    height: 100%;
+    position: absolute;
+    width: 100%;
+  }
+}
+
+[data-meal-name="treat-yo-self"] {
+  background: url(../images/meals/treat-yo-self.png) no-repeat center;
+}
+
+[data-meal-name="super-sami"] {
+  background: url(../images/meals/super-sami.png) no-repeat center;
+
+  & + .description {
+    top: 75%;
+  }
+}
+
+[data-meal-name="sassy-salad"] {
+  background: url(../images/meals/sassy-salad.png) no-repeat center;
+
+  & + .description {
+    top: 80%;
+  }
+}
+
+[data-meal-name="big-burg"] {
+  background: url(../images/meals/big-burg.png) no-repeat center;
+
+  & + .description {
+    top: 80%;
+  }
+}
+
+[data-meal-name="sick-day-solver"] {
+  background: url(../images/meals/sick-day-solver.png) no-repeat center;
+
+  & + .description {
+    top: 70%;
+  }
+}
+
+[data-meal-name="breakfast-n-bed"] {
+  background: url(../images/meals/breakfast-n-bed.png) no-repeat center;
+
+  & + .description {
+    top: 70%;
+  }
+}
+
+[data-meal-name="fancy-fries"] {
+  background: url(../images/meals/fancy-fries.png) no-repeat center;
+
+  & + .description {
+    top: 70%;
+  }
+}
+
+[data-meal-name="yes-yos"] {
+  background: url(../images/meals/yes-yos.png) no-repeat center;
+
+  & + .description {
+    top: 80%;
+  }
+}
+
+[data-meal-name="lil-macs"] {
+  background: url(../images/meals/lil-macs.png) no-repeat center;
+
+  & + .description {
+    top: 80%;
+  }
+}
+
+[data-meal-name="stacks"] {
+  background: url(../images/meals/stacks.png) no-repeat center;
+
+  & + .description {
+    // top: 70%;
+  }
+}

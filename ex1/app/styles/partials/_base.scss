@@ -1,0 +1,101 @@
+html, body {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+html { font-size: 62.5%; }
+body {
+  background-color: white;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 1.6rem;
+	line-height: 2.56rem;
+  padding-top: 13rem;
+	text-rendering: optimizeLegibility;
+}
+
+
+h1, h2, h3, h4, h5, h6, p {
+    // margin: 0;
+    // padding: 0;
+}
+
+h1 {
+  color: white;
+  font-family: 'Roboto Condensed', 'Arial Narrow', Arial, sans-serif;
+  font-size: pow($ratio, 6) * 1rem;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-family: 'Roboto Condensed', 'Arial Narrow', Arial, sans-serif;
+  font-size: pow($ratio, 5) * 1rem;
+}
+
+h3 {
+  font-family: 'Playfair Display', Georgia, Times, 'Times New Roman', serif;
+  font-size: pow($ratio, 4) * 1rem;
+}
+
+h4 {
+  color: #C7C7C7;
+  font-family: 'Playfair Display', Georgia, Times, 'Times New Roman', serif;
+  font-size: pow($ratio, 3) * 1rem;
+  letter-spacing: 1px;
+}
+
+h5 {
+  color: #C7C7C7;
+  font-family: 'Playfair Display', Georgia, Times, 'Times New Roman', serif;
+  font-size: pow($ratio, 2) * 1rem;
+  text-transform: lowercase;;
+}
+
+h6 {
+  font-size: pow($ratio, 1) * 1rem;
+}
+
+p {
+
+}
+
+a {
+  &:focus {
+    outline: none;
+  }
+}
+
+figure,
+figcaption {
+  margin: 0;
+  padding: 0;
+
+  img {
+    width: 100%;
+  }
+}
+
+figcaption {
+
+}
+
+main {
+
+  > .container-fluid {
+    margin-bottom: 3rem;
+  }
+}
+
+ul {
+	list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+footer {
+
+}
+
+.margin {
+  margin-bottom: 3rem;
+}
