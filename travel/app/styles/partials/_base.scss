@@ -1,0 +1,123 @@
+html {
+  font-size: 62.5%
+}
+
+body {
+  background-color: white;
+  color: #333;
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+  font-size: 1.6rem;
+  height: 100vh;
+  line-height: 2.56rem;
+  overflow-x: hidden;
+  position: relative;
+  text-rendering: optimizeLegibility;
+}
+
+body, html {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  padding: 0;
+}
+
+h1 {
+  font-family: 'Oswald', Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: pow($ratio, 6) * 1rem;
+  line-height: 1.1;
+}
+
+h2 {
+  font-family: 'Oswald', Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: pow($ratio, 5) * 1rem;
+}
+
+h3 {
+  font-family: 'Oswald', Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: pow($ratio, 4) * 1rem;
+}
+
+h4 {
+  font-family: 'Oswald', Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: pow($ratio, 3) * 1rem;
+}
+
+h5 {
+  font-family: 'Oswald', Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: pow($ratio, 2) * 1rem;
+  font-weight: lighter;
+}
+
+h6 {
+  font-family: 'Oswald', sans-serif;
+  font-size: pow($ratio, 1) * 1rem;
+}
+
+p {
+  font-size: 1rem;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+figure {
+  margin: 0;
+  padding: 0;
+  position: relative;
+
+  img {
+    display: block;
+    width: 100%;
+  }
+}
+
+main {
+  position: relative;
+}
+
+nav {
+  background-color: white;
+
+  h6 {
+    display: inline-block;
+
+    &:first-of-type {
+      font-weight: lighter;
+      margin-right: 3rem;
+    }
+  }
+}
+
+.hidden {
+  display: none;
+  opacity: 0;
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 116rem;
+  width: 90%;
+}
+
+@include keyframes(fadeIn) {
+  0%   {
+    display: none;
+    opacity: 0;
+  }
+  1%   {
+    display: block;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  @include animation('fadeIn .5s ease-out');
+  animation-fill-mode: forwards;
+}

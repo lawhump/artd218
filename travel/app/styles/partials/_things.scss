@@ -1,0 +1,54 @@
+.filtered-things {
+
+  figure {
+    cursor: pointer;
+  }
+
+  img {
+    filter: brightness(.7);
+    height: 23rem;
+  }
+
+  figcaption {
+    background-color: white;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    padding: .2rem 1rem;
+    position: absolute;
+  }
+
+  article {
+    margin: 0 auto;
+    position: relative;
+    width: 80%;
+
+    &:before {
+      background-color: #CC3910;
+      content: ' ';
+      height: 100%;
+      left: -12.5%;
+      position: absolute;
+      top: 0;
+      width: .5rem;
+    }
+  }
+
+  .name {
+
+    h5:first-of-type {
+      margin-left: 1rem;
+    }
+
+    h5 {
+      margin-right: .5rem;
+    }
+
+    > * {
+      display: inline-block;
+    }
+  }
+}
+
+.thing {
+  margin-bottom: 4rem;
+}

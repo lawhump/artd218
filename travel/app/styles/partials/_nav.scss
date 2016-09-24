@@ -1,0 +1,16 @@
+.dropdown {
+  margin-right: 1rem;
+
+  &:nth-child(3) {
+    margin-right: 2rem;
+  }
+
+  &:after {
+    content: '▾';
+    transform: rotate(180deg);
+  }
+}
+
+.radio-input {
+  margin-right: 1rem;
+}
