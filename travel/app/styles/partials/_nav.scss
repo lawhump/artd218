@@ -1,4 +1,5 @@
 .dropdown {
+  cursor: pointer;
   margin-right: 1rem;
 
   &:nth-child(3) {
@@ -7,10 +8,30 @@
 
   &:after {
     content: '▾';
-    transform: rotate(180deg);
   }
 }
 
 .radio-input {
   margin-right: 1rem;
+}
+
+div.districts {
+  @include shadow(2);
+  background-color: white;
+  left: 0;
+  padding: 2rem;
+  position: absolute;
+  top: 100%;
+  transform: scale(1.01);
+  width: 100%;
+  z-index: 10;
+
+  li {
+    display: inline-block;
+    width: 49%;
+
+    &:nth-of-type(2n) {
+      margin-left: 1.4%;
+    }
+  }
 }

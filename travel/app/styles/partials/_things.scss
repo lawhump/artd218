@@ -1,20 +1,17 @@
 .filtered-things {
 
-  figure {
-    cursor: pointer;
+  span.activity,
+  span.district {
+
+    &.active {
+      color: $accent;
+      text-transform: capitalize;
+    }
   }
 
   img {
     filter: brightness(.7);
     height: 23rem;
-  }
-
-  figcaption {
-    background-color: white;
-    bottom: 1.5rem;
-    left: 1.5rem;
-    padding: .2rem 1rem;
-    position: absolute;
   }
 
   article {
@@ -23,7 +20,7 @@
     width: 80%;
 
     &:before {
-      background-color: #CC3910;
+      background-color: $accent;
       content: ' ';
       height: 100%;
       left: -12.5%;

@@ -66,6 +66,7 @@ ul {
 }
 
 figure {
+  cursor: pointer;
   margin: 0;
   padding: 0;
   position: relative;
@@ -76,12 +77,22 @@ figure {
   }
 }
 
+figcaption {
+  background-color: white;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  padding: .2rem 1rem;
+  position: absolute;
+}
+
+
 main {
   position: relative;
 }
 
 nav {
   background-color: white;
+  position: relative;
 
   h6 {
     display: inline-block;
