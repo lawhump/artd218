@@ -9,6 +9,7 @@ let $ = (query) => {
 };
 
 let $things = $('.thing');
+let filtered;
 
 $('.filtered-things').addEventListener('click', (e) => {
   let article = e.target.parentNode.parentNode;
@@ -28,7 +29,13 @@ $('div.districts').addEventListener('click', (e) => {
       return null;
     };
 
-    let filtered = _.filter($things, filter);
+    if (filtered === undefined) {
+      filtered = _.filter($things, filter);
+    }
+    else {
+      filtered = _.filter(filtered, filter);
+    }
+
     let container = $('.filtered-things ul');
 
 
@@ -47,6 +54,50 @@ $('div.districts').addEventListener('click', (e) => {
 
     string.classList.add('active');
     string.innerText = district;
+  };
+
+  if(e.target && e.target.nodeName == 'IMG') {
+    updateThings();
+    updateString();
+  }
+});
+
+$('div.activities').addEventListener('click', (e) => {
+  let activity = e.target.dataset.activity;
+  let updateThings = () => {
+    let filter = (elem) => {
+      let acs = elem.dataset.activity;
+      if (acs.toLowerCase().indexOf(activity) >= 0) {
+        return elem;
+      }
+      return null;
+    };
+
+    if (filtered === undefined) {
+      filtered = _.filter($things, filter);
+    }
+    else {
+      filtered = _.filter(filtered, filter);
+    }
+
+    let container = $('.filtered-things ul');
+
+
+    let removeChildren = (c) => {
+      while (c.firstChild) {
+        c.removeChild(c.firstChild);
+      }
+    };
+
+    removeChildren(container);
+    _.map(filtered, (elem) => { container.appendChild(elem); });
+  };
+
+  let updateString = () => {
+    let string = $('span.activity');
+
+    string.classList.add('active');
+    string.innerText = activity;
   };
 
   if(e.target && e.target.nodeName == 'IMG') {
