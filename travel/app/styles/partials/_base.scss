@@ -26,38 +26,38 @@ h1, h2, h3, h4, h5, h6, p {
 
 h1 {
   font-family: 'Oswald', Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-size: pow($ratio, 6) * 1rem;
+  font-size: pow($ratio, 6) * 1.2rem;
   line-height: 1.1;
 }
 
 h2 {
   font-family: 'Oswald', Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-size: pow($ratio, 5) * 1rem;
+  font-size: pow($ratio, 5) * 1.2rem;
 }
 
 h3 {
   font-family: 'Oswald', Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-size: pow($ratio, 4) * 1rem;
+  font-size: pow($ratio, 4) * 1.2rem;
 }
 
 h4 {
   font-family: 'Oswald', Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-size: pow($ratio, 3) * 1rem;
+  font-size: pow($ratio, 3) * 1.2rem;
 }
 
 h5 {
   font-family: 'Oswald', Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-size: pow($ratio, 2) * 1rem;
+  font-size: pow($ratio, 2) * 1.2rem;
   font-weight: lighter;
 }
 
 h6 {
   font-family: 'Oswald', sans-serif;
-  font-size: pow($ratio, 1) * 1rem;
+  font-size: pow($ratio, 1) * 1.2rem;
 }
 
 p {
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 ul {
@@ -92,6 +92,8 @@ main {
 
 nav {
   background-color: white;
+  border-bottom: .3rem solid darken(white, 5);
+  padding: 1rem 0;
   position: relative;
 
   h6 {
