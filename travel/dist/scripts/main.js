@@ -13,6 +13,51 @@ var $ = function $(query) {
 var $things = $('.thing');
 var filtered = void 0;
 
+var landing = $('.landing-wrapper');
+var vHeight = $('.bg1').clientHeight;
+var modal = $('.modal-wrapper');
+var main = $('main.stay');
+
+var lastPos = 0;
+var ticking = false;
+
+window.addEventListener('scroll', function () {
+  var checkView = function checkView(pos) {
+    var goingDown = function goingDown() {
+      return lastPos < pos;
+    };
+
+    if (goingDown) {
+      if (pos > .45 * vHeight) {
+        modal.classList.add('right');
+      }
+
+      if (pos > vHeight + 100) {
+        landing.classList.add('inactive');
+        modal.classList.add('inactive');
+        main.classList.remove('stay');
+      }
+    } else {
+      if (pos < vHeight) {
+        modal.classList.remove('right');
+      }
+
+      if (pos < vHeight + 99) {
+        landing.classList.remove('inactive');
+      }
+    }
+  };
+
+  lastPos = window.scrollY;
+  if (!ticking) {
+    window.requestAnimationFrame(function () {
+      checkView(lastPos);
+      ticking = false;
+    });
+  }
+  ticking = true;
+});
+
 $('.filtered-things').addEventListener('click', function (e) {
   var article = e.target.parentNode.parentNode;
   article = article.querySelector('article');
@@ -58,9 +103,10 @@ $('div.districts').addEventListener('click', function (e) {
     string.innerText = district;
   };
 
-  if (e.target && e.target.nodeName == 'IMG') {
+  if (e.target && e.target.nodeName === 'IMG') {
     updateThings();
     updateString();
+    $('div.districts').classList.toggle('hidden');
   }
 });
 
@@ -102,17 +148,18 @@ $('div.activities').addEventListener('click', function (e) {
     string.innerText = activity;
   };
 
-  if (e.target && e.target.nodeName == 'IMG') {
+  if (e.target && e.target.nodeName === 'IMG') {
     updateThings();
     updateString();
+    $('div.activities').classList.toggle('hidden');
   }
 });
 
-$('nav .districts.dropdown').addEventListener('click', function (e) {
+$('nav .districts.dropdown').addEventListener('click', function () {
   $('div.districts').classList.toggle('hidden');
 });
 
-$('nav .activities.dropdown').addEventListener('click', function (e) {
+$('nav .activities.dropdown').addEventListener('click', function () {
   $('div.activities').classList.toggle('hidden');
 });
 //# sourceMappingURL=main.js.map
