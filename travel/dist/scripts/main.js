@@ -179,15 +179,15 @@ $reset.addEventListener('click', function (e) {
     $('span.activity').innerText = 'What to do';
     $('span.district').innerText = 'Austin';
 
-    var actAc = $('.active.activity');
-    var actDis = $('.active.district');
+    var actAc = document.querySelectorAll('.active.activity');
+    var actDis = document.querySelectorAll('.active.district');
 
-    if (actAc != undefined) {
-      actAc.classList.remove('active');
+    if (actAc.length > 0) {
+      actAc[0].classList.remove('active');
     }
 
-    if (actDis != undefined) {
-      actDis.classList.remove('active');
+    if (actDis.length > 0) {
+      actDis[0].classList.remove('active');
     }
   };
 
