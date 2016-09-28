@@ -169,12 +169,12 @@ $('nav .activities.dropdown').addEventListener('click', () => {
   $('div.activities').classList.toggle('hidden');
 });
 
-$ww.addEventListener('click', (e) => {
+$ww.addEventListener('click', () => {
   $ww.classList.toggle('active');
   $ww.querySelector('.waypoints').classList.toggle('hidden');
 });
 
-$reset.addEventListener('click', (e) => {
+$reset.addEventListener('click', () => {
   let resetString = () => {
     $('span.activity').innerText = 'What to do';
     $('span.district').innerText = 'Austin';
