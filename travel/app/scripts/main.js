@@ -18,9 +18,20 @@ let vHeight = $('.bg1').clientHeight;
 let modal = $('.modal-wrapper');
 let main = $('main.stay');
 
+let $reset = $('.filtered-things .reset');
 
 let lastPos = 0;
 let ticking = false;
+
+let $ww = $('.waypoints-wrapper');
+
+let $container = $('.filtered-things ul');
+
+let removeChildren = () => {
+  while ($container.firstChild) {
+    $container.removeChild($container.firstChild);
+  }
+};
 
 window.addEventListener('scroll', () => {
   let checkView = (pos) => {
@@ -61,11 +72,13 @@ window.addEventListener('scroll', () => {
   ticking = true;
 });
 
-$('.filtered-things').addEventListener('click', (e) => {
-  let article = e.target.parentNode.parentNode;
-  article = article.querySelector('article');
-  article.classList.toggle('hidden');
-  article.classList.toggle('fadeIn');
+$('.filtered-things ul').addEventListener('click', (e) => {
+  if(e.target && e.target.nodeName === 'IMG') {
+    let article = e.target.parentNode.parentNode;
+    article = article.querySelector('article');
+    article.classList.toggle('hidden');
+    article.classList.toggle('fadeIn');
+  }
 });
 
 $('div.districts').addEventListener('click', (e) => {
@@ -86,17 +99,8 @@ $('div.districts').addEventListener('click', (e) => {
       filtered = _.filter(filtered, filter);
     }
 
-    let container = $('.filtered-things ul');
-
-
-    let removeChildren = (c) => {
-      while (c.firstChild) {
-        c.removeChild(c.firstChild);
-      }
-    };
-
-    removeChildren(container);
-    _.map(filtered, (elem) => { container.appendChild(elem); });
+    removeChildren();
+    _.map(filtered, (elem) => { $container.appendChild(elem); });
   };
 
   let updateString = () => {
@@ -104,6 +108,10 @@ $('div.districts').addEventListener('click', (e) => {
 
     string.classList.add('active');
     string.innerText = district;
+
+    if ($reset.classList.contains('hidden')) {
+      $reset.classList.remove('hidden');
+    }
   };
 
   if(e.target && e.target.nodeName === 'IMG') {
@@ -131,17 +139,8 @@ $('div.activities').addEventListener('click', (e) => {
       filtered = _.filter(filtered, filter);
     }
 
-    let container = $('.filtered-things ul');
-
-
-    let removeChildren = (c) => {
-      while (c.firstChild) {
-        c.removeChild(c.firstChild);
-      }
-    };
-
-    removeChildren(container);
-    _.map(filtered, (elem) => { container.appendChild(elem); });
+    removeChildren();
+    _.map(filtered, (elem) => { $container.appendChild(elem); });
   };
 
   let updateString = () => {
@@ -149,6 +148,10 @@ $('div.activities').addEventListener('click', (e) => {
 
     string.classList.add('active');
     string.innerText = activity;
+
+    if ($reset.classList.contains('hidden')) {
+      $reset.classList.remove('hidden');
+    }
   };
 
   if(e.target && e.target.nodeName === 'IMG') {
@@ -164,4 +167,36 @@ $('nav .districts.dropdown').addEventListener('click', () => {
 
 $('nav .activities.dropdown').addEventListener('click', () => {
   $('div.activities').classList.toggle('hidden');
+});
+
+$ww.addEventListener('click', (e) => {
+  $ww.classList.toggle('active');
+  $ww.querySelector('.waypoints').classList.toggle('hidden');
+});
+
+$reset.addEventListener('click', (e) => {
+  let resetString = () => {
+    $('span.activity').innerText = 'What to do';
+    $('span.district').innerText = 'Austin';
+
+    let actAc = $('.active.activity');
+    let actDis = $('.active.district');
+
+    if (actAc != undefined) {
+      actAc.classList.remove('active');
+    }
+
+    if (actDis != undefined) {
+      actDis.classList.remove('active');
+    }
+  };
+
+  let resetThings = () => {
+    removeChildren();
+    _.map($things, (elem) => { $container.appendChild(elem); });
+  };
+
+
+  resetString();
+  resetThings();
 });

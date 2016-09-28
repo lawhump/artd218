@@ -1,0 +1,29 @@
+.waypoints-wrapper {
+  @include shadow(2);
+  background-color: $accent;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 8rem;
+  max-width: 30rem;
+  position: absolute;
+  right: 0;
+  top: 35%;
+  transition: background-color .2s ease-out,
+              border-radius .2s ease-out,
+              height .6s ease-out .3s,
+              width .4s ease-out;
+  width: 8rem;
+  z-index: 100;
+
+  &.active {
+    background-color: white;
+    border-radius: .2rem;
+    height: auto;
+    width: 70%;
+  }
+
+  .waypoints {
+    margin: 3rem auto;
+    width: 80%;
+  }
+}

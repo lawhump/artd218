@@ -18,8 +18,20 @@ var vHeight = $('.bg1').clientHeight;
 var modal = $('.modal-wrapper');
 var main = $('main.stay');
 
+var $reset = $('.filtered-things .reset');
+
 var lastPos = 0;
 var ticking = false;
+
+var $ww = $('.waypoints-wrapper');
+
+var $container = $('.filtered-things ul');
+
+var removeChildren = function removeChildren() {
+  while ($container.firstChild) {
+    $container.removeChild($container.firstChild);
+  }
+};
 
 window.addEventListener('scroll', function () {
   var checkView = function checkView(pos) {
@@ -58,11 +70,13 @@ window.addEventListener('scroll', function () {
   ticking = true;
 });
 
-$('.filtered-things').addEventListener('click', function (e) {
-  var article = e.target.parentNode.parentNode;
-  article = article.querySelector('article');
-  article.classList.toggle('hidden');
-  article.classList.toggle('fadeIn');
+$('.filtered-things ul').addEventListener('click', function (e) {
+  if (e.target && e.target.nodeName === 'IMG') {
+    var article = e.target.parentNode.parentNode;
+    article = article.querySelector('article');
+    article.classList.toggle('hidden');
+    article.classList.toggle('fadeIn');
+  }
 });
 
 $('div.districts').addEventListener('click', function (e) {
@@ -82,17 +96,9 @@ $('div.districts').addEventListener('click', function (e) {
       filtered = _.filter(filtered, filter);
     }
 
-    var container = $('.filtered-things ul');
-
-    var removeChildren = function removeChildren(c) {
-      while (c.firstChild) {
-        c.removeChild(c.firstChild);
-      }
-    };
-
-    removeChildren(container);
+    removeChildren();
     _.map(filtered, function (elem) {
-      container.appendChild(elem);
+      $container.appendChild(elem);
     });
   };
 
@@ -101,6 +107,10 @@ $('div.districts').addEventListener('click', function (e) {
 
     string.classList.add('active');
     string.innerText = district;
+
+    if ($reset.classList.contains('hidden')) {
+      $reset.classList.remove('hidden');
+    }
   };
 
   if (e.target && e.target.nodeName === 'IMG') {
@@ -127,17 +137,9 @@ $('div.activities').addEventListener('click', function (e) {
       filtered = _.filter(filtered, filter);
     }
 
-    var container = $('.filtered-things ul');
-
-    var removeChildren = function removeChildren(c) {
-      while (c.firstChild) {
-        c.removeChild(c.firstChild);
-      }
-    };
-
-    removeChildren(container);
+    removeChildren();
     _.map(filtered, function (elem) {
-      container.appendChild(elem);
+      $container.appendChild(elem);
     });
   };
 
@@ -146,6 +148,10 @@ $('div.activities').addEventListener('click', function (e) {
 
     string.classList.add('active');
     string.innerText = activity;
+
+    if ($reset.classList.contains('hidden')) {
+      $reset.classList.remove('hidden');
+    }
   };
 
   if (e.target && e.target.nodeName === 'IMG') {
@@ -161,5 +167,38 @@ $('nav .districts.dropdown').addEventListener('click', function () {
 
 $('nav .activities.dropdown').addEventListener('click', function () {
   $('div.activities').classList.toggle('hidden');
+});
+
+$ww.addEventListener('click', function (e) {
+  $ww.classList.toggle('active');
+  $ww.querySelector('.waypoints').classList.toggle('hidden');
+});
+
+$reset.addEventListener('click', function (e) {
+  var resetString = function resetString() {
+    $('span.activity').innerText = 'What to do';
+    $('span.district').innerText = 'Austin';
+
+    var actAc = $('.active.activity');
+    var actDis = $('.active.district');
+
+    if (actAc != undefined) {
+      actAc.classList.remove('active');
+    }
+
+    if (actDis != undefined) {
+      actDis.classList.remove('active');
+    }
+  };
+
+  var resetThings = function resetThings() {
+    removeChildren();
+    _.map($things, function (elem) {
+      $container.appendChild(elem);
+    });
+  };
+
+  resetString();
+  resetThings();
 });
 //# sourceMappingURL=main.js.map
