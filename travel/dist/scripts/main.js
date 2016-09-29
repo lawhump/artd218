@@ -200,5 +200,7 @@ $reset.addEventListener('click', function () {
 
   resetString();
   resetThings();
+
+  filtered = undefined;
 });
 //# sourceMappingURL=main.js.map

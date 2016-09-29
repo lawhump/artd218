@@ -199,4 +199,6 @@ $reset.addEventListener('click', () => {
 
   resetString();
   resetThings();
+
+  filtered = undefined;
 });
