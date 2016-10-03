@@ -61,4 +61,19 @@
 
 .thing {
   margin-bottom: 4rem;
+
+  h3 {
+    position: relative;
+
+    &:after {
+      background: url('../../app/images/icons/add.png');
+      content: ' ';
+      height: 3.6rem;
+      left: calc(110% + 1rem);
+      opacity: .3;
+      position: absolute;
+      top: 0;
+      width: 3.6rem;
+    }
+  }
 }

@@ -24,6 +24,7 @@ var lastPos = 0;
 var ticking = false;
 
 var $ww = $('.waypoints-wrapper');
+var $addedWPs = $('.waypoints .added');
 
 var $container = $('.filtered-things ul');
 
@@ -71,11 +72,24 @@ window.addEventListener('scroll', function () {
 });
 
 $('.filtered-things ul').addEventListener('click', function (e) {
+  var addToWaypoints = function addToWaypoints(thing) {
+    var wp = document.createElement('LI');
+    wp.innerText = thing;
+    $addedWPs.appendChild(wp);
+  };
+
   if (e.target && e.target.nodeName === 'IMG') {
     var article = e.target.parentNode.parentNode;
     article = article.querySelector('article');
     article.classList.toggle('hidden');
     article.classList.toggle('fadeIn');
+  } else if (e.target && e.target.nodeName === 'H3') {
+    var figcaption = e.target.parentNode;
+    if (e.offsetX > figcaption.offsetWidth) {
+      addToWaypoints(e.target.innerText);
+    }
+  } else {
+    console.log('bink');
   }
 });
 

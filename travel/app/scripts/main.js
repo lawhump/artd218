@@ -24,6 +24,7 @@ let lastPos = 0;
 let ticking = false;
 
 let $ww = $('.waypoints-wrapper');
+let $addedWPs = $('.waypoints .added');
 
 let $container = $('.filtered-things ul');
 
@@ -73,11 +74,28 @@ window.addEventListener('scroll', () => {
 });
 
 $('.filtered-things ul').addEventListener('click', (e) => {
+  let addToWaypoints = (thing) => {
+    let wp = document.createElement('LI');
+    wp.innerText = thing;
+    $addedWPs.appendChild(wp);
+  };
+
   if(e.target && e.target.nodeName === 'IMG') {
     let article = e.target.parentNode.parentNode;
     article = article.querySelector('article');
     article.classList.toggle('hidden');
     article.classList.toggle('fadeIn');
+  }
+
+  else if (e.target && e.target.nodeName === 'H3') {
+    let figcaption = e.target.parentNode;
+    if (e.offsetX > figcaption.offsetWidth) {
+      addToWaypoints(e.target.innerText);
+    }
+  }
+
+  else {
+    console.log('bink');
   }
 });
 
