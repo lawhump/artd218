@@ -21,13 +21,18 @@
 
 .bg1,
 .bg2 {
-  background: url(http://cdn2.laketravis.com/wordpress1/wp-content/uploads/2013/03/bp_oasis.jpg) no-repeat center center;
-  background-size: cover;
   height: 102vh;
   width: 100vw;
 }
 
+.bg1 {
+  background: url(http://galvanize-wp.s3.amazonaws.com/wp-content/uploads/2015/08/12154910/atx-pano.jpg) no-repeat center center;
+  background-size: cover;
+}
+
 .bg2 {
+  background: url(http://cdn2.laketravis.com/wordpress1/wp-content/uploads/2013/03/bp_oasis.jpg) no-repeat center center;
+  background-size: cover;
   margin-bottom: 10rem;
 }
 

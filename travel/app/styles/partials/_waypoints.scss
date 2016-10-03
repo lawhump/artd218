@@ -1,3 +1,30 @@
+@include keyframes(expanded) {
+  0%   {
+    background-color: #CC3910;
+    border-radius: 50%;
+    display: none;
+    height: 8rem;
+    opacity: 0;
+    visibility: hidden;
+    width: 8rem;
+  }
+  1% {
+    display: block;
+    height: auto;
+  }
+  25% {
+    background-color: white;
+    border-radius: .2rem;
+  }
+  50% {
+    opacity: 1;
+    width: 70%;
+  }
+  100% {
+    visibility: visible;
+  }
+}
+
 .waypoints-wrapper {
   @include shadow(2);
   background-color: $accent;
@@ -8,22 +35,75 @@
   position: absolute;
   right: 0;
   top: 35%;
-  transition: background-color .2s ease-out,
-              border-radius .2s ease-out,
-              height .6s ease-out .3s,
-              width .4s ease-out;
+  transform: scale(1);
+  transition: transform .25s ease-in-out;
   width: 8rem;
   z-index: 100;
 
   &.active {
+    @include animation('expanded .5s ease-out');
+    animation-fill-mode: forwards;
     background-color: white;
     border-radius: .2rem;
     height: auto;
     width: 70%;
   }
 
+  &.pulse {
+    transform: scale(1.1);
+  }
+
   .waypoints {
     margin: 3rem auto;
     width: 80%;
+  }
+
+  h4,
+  h5 {
+    text-align: center;
+  }
+
+  .recommended {
+    color: #808080;
+  }
+
+  .added,
+  .recommended {
+
+    span {
+      float: right;
+    }
+
+    img {
+      opacity: .2;
+      transition: opacity .15s ease-out;
+      width: 1.6rem;
+    }
+
+    li {
+      margin-bottom: .7rem;
+
+      &:hover {
+        img {
+          opacity: .5;
+        }
+      }
+    }
+  }
+
+  h5 {
+    padding-top: 2rem;
+    position: relative;
+
+    &:before {
+      background-color: #f2f2f2;
+      content: ' ';
+      height: .3rem;
+      left: 50%;
+      position: absolute;
+      top: 0;
+      transform: translateX(-50%);
+      width: 90%;
+    }
   }
 }

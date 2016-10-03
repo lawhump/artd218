@@ -25,6 +25,7 @@ var ticking = false;
 
 var $ww = $('.waypoints-wrapper');
 var $addedWPs = $('.waypoints .added');
+var waypoints = ['Alamo Drafthouse'];
 
 var $container = $('.filtered-things ul');
 
@@ -73,9 +74,20 @@ window.addEventListener('scroll', function () {
 
 $('.filtered-things ul').addEventListener('click', function (e) {
   var addToWaypoints = function addToWaypoints(thing) {
-    var wp = document.createElement('LI');
-    wp.innerText = thing;
-    $addedWPs.appendChild(wp);
+    var addedContainsThing = waypoints.indexOf(thing) >= 0;
+
+    if (!addedContainsThing) {
+      var wp = document.createElement('LI');
+      wp.innerText = thing;
+      $addedWPs.appendChild(wp);
+
+      waypoints.push(thing);
+
+      $ww.classList.add('pulse');
+      window.setTimeout(function () {
+        $ww.classList.remove('pulse');
+      }, 300);
+    }
   };
 
   if (e.target && e.target.nodeName === 'IMG') {

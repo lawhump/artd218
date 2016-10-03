@@ -25,6 +25,7 @@ let ticking = false;
 
 let $ww = $('.waypoints-wrapper');
 let $addedWPs = $('.waypoints .added');
+let waypoints = ['Alamo Drafthouse'];
 
 let $container = $('.filtered-things ul');
 
@@ -75,9 +76,20 @@ window.addEventListener('scroll', () => {
 
 $('.filtered-things ul').addEventListener('click', (e) => {
   let addToWaypoints = (thing) => {
-    let wp = document.createElement('LI');
-    wp.innerText = thing;
-    $addedWPs.appendChild(wp);
+    let addedContainsThing = waypoints.indexOf(thing) >= 0;
+
+    if (!addedContainsThing) {
+      let wp = document.createElement('LI');
+      wp.innerText = thing;
+      $addedWPs.appendChild(wp);
+
+      waypoints.push(thing);
+
+      $ww.classList.add('pulse');
+      window.setTimeout(() => {
+        $ww.classList.remove('pulse');
+      }, 300);
+    }
   };
 
   if(e.target && e.target.nodeName === 'IMG') {
