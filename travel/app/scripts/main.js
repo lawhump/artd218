@@ -200,9 +200,10 @@ $('nav .activities.dropdown').addEventListener('click', () => {
 });
 
 $ww.addEventListener('click', () => {
-  $('.waypoints-wrapper .icon').classList.toggle('hidden');
-  $ww.classList.toggle('active');
-  $ww.querySelector('.waypoints').classList.toggle('hidden');
+  // $('.waypoints-wrapper .icon').classList.toggle('hidden');
+  // $ww.classList.toggle('active');
+  // $ww.querySelector('.waypoints').classList.toggle('hidden');
+  $('div.waypoints').classList.toggle('hidden');
 });
 
 $reset.addEventListener('click', () => {

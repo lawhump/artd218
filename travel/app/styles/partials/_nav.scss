@@ -25,7 +25,8 @@ nav {
 }
 
 div.districts,
-div.activities {
+div.activities,
+div.waypoints {
   @include shadow(2);
   background-color: white;
   left: 50%;

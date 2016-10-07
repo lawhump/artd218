@@ -196,9 +196,10 @@ $('nav .activities.dropdown').addEventListener('click', function () {
 });
 
 $ww.addEventListener('click', function () {
-  $('.waypoints-wrapper .icon').classList.toggle('hidden');
-  $ww.classList.toggle('active');
-  $ww.querySelector('.waypoints').classList.toggle('hidden');
+  // $('.waypoints-wrapper .icon').classList.toggle('hidden');
+  // $ww.classList.toggle('active');
+  // $ww.querySelector('.waypoints').classList.toggle('hidden');
+  $('div.waypoints').classList.toggle('hidden');
 });
 
 $reset.addEventListener('click', function () {
