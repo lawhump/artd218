@@ -200,6 +200,7 @@ $('nav .activities.dropdown').addEventListener('click', () => {
 });
 
 $ww.addEventListener('click', () => {
+  $('.waypoints-wrapper .icon').classList.toggle('hidden');
   $ww.classList.toggle('active');
   $ww.querySelector('.waypoints').classList.toggle('hidden');
 });
