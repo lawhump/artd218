@@ -26,16 +26,12 @@
 }
 
 .waypoints-wrapper {
-  @include shadow(2);
   background-color: $accent;
-  border-radius: 50%;
   cursor: pointer;
-  height: 8rem;
+  float: right;
+  height: 9.5rem;
   max-width: 30rem;
-  position: absolute;
-  right: 0;
   text-align: center;
-  top: 35%;
   transform: scale(1);
   transition: transform .25s ease-in-out;
   width: 8rem;
@@ -55,7 +51,7 @@
   }
 
   .icon {
-    padding: 2rem 0;
+    padding: 3rem 0;
     width: 4rem;
   }
 
