@@ -39,7 +39,10 @@ div.waypoints {
   transform: scale(1.01) translateX(-50%);
   width: 100%;
   z-index: 10;
+}
 
+div.districts,
+div.activities {
   li {
     display: inline-block;
     width: 32%;
@@ -48,4 +51,5 @@ div.waypoints {
       margin-left: 1.4%;
     }
   }
+
 }
