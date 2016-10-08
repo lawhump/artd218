@@ -3,6 +3,9 @@ $icon-font-path: '../fonts/';
 // bower:scss
 // endbower
 
+// Super sketch but fuck it
+@import "partials/bootstrap";
+
 @import "partials/vars";
 @import "partials/mixins";
 @import "partials/base";
@@ -11,3 +14,5 @@ $icon-font-path: '../fonts/';
 @import "partials/waypoints";
 @import "partials/things";
 @import "partials/footer";
+
+@import "partials/button";

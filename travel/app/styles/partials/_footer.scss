@@ -1,9 +1,24 @@
 footer {
-  margin: 12rem 0 18rem 0;
+  background-color: #f9f9f9;
+  margin-top: 4rem;
+  padding: 4rem 0 6rem 0;
   text-align: center;
 
-  h5 {
-    letter-spacing: .1rem;
-    margin-top: 2rem;
+  .description {
+    text-align: left;
   }
+
+  img {
+    width: 100%;
+  }
+
+  p {
+    margin-bottom: 2.6rem;
+  }
+}
+
+.cute-shit {
+  color: #555;
+  padding: 5rem 0;
+  text-align: center;
 }
