@@ -47,7 +47,7 @@ div.activities {
     display: inline-block;
     width: 32%;
 
-    &:nth-of-type(3n) {
+    &:not(:nth-of-type(3n+1)) {
       margin-left: 1.4%;
     }
   }

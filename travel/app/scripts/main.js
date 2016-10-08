@@ -1,6 +1,6 @@
 'use strict';
 
-let $ = (query) => {
+const $ = (query) => {
   var res = document.querySelectorAll(query);
 
   if (res.length === 1) {
@@ -10,24 +10,24 @@ let $ = (query) => {
   return res;
 };
 
-let $things = $('.thing');
+const $things = $('.thing');
 let filtered;
 
-let landing = $('.landing-wrapper');
+const landing = $('.landing-wrapper');
+const modal = $('.modal-wrapper');
+const main = $('main.stay');
 let vHeight = $('.bg1').clientHeight;
-let modal = $('.modal-wrapper');
-let main = $('main.stay');
 
-let $reset = $('.filtered-things .reset');
+const $reset = $('.filtered-things .reset');
 
 let lastPos = 0;
 let ticking = false;
 
-let $ww = $('.waypoints-wrapper');
-let $addedWPs = $('.waypoints .added');
-let waypoints = ['Alamo Drafthouse'];
+const $ww = $('.waypoints-wrapper');
+const $addedWPs = $('.waypoints .added');
+const waypoints = ['Alamo Drafthouse'];
 
-let $container = $('.filtered-things ul');
+const $container = $('.filtered-things ul');
 
 let removeChildren = () => {
   while ($container.firstChild) {

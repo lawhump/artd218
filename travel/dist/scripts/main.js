@@ -14,9 +14,9 @@ var $things = $('.thing');
 var filtered = void 0;
 
 var landing = $('.landing-wrapper');
-var vHeight = $('.bg1').clientHeight;
 var modal = $('.modal-wrapper');
 var main = $('main.stay');
+var vHeight = $('.bg1').clientHeight;
 
 var $reset = $('.filtered-things .reset');
 
