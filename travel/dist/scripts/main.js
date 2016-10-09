@@ -195,6 +195,10 @@ $('nav .activities.dropdown').addEventListener('click', function () {
   $('div.activities').classList.toggle('hidden');
 });
 
+$('nav .radio-input').addEventListener('click', function () {
+  $('nav .radio-input span').classList.toggle('active');
+});
+
 $ww.addEventListener('click', function () {
   // $('.waypoints-wrapper .icon').classList.toggle('hidden');
   // $ww.classList.toggle('active');

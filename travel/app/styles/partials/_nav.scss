@@ -21,7 +21,36 @@ nav {
 }
 
 .radio-input {
-  margin-right: 1rem;
+  cursor: pointer;
+  margin-right: 2rem;
+
+  span {
+    border: .3rem solid #555;
+    display: inline-block;
+    height: 1.5rem;
+    margin-right: .6rem;
+    position: relative;
+    width: 1.5rem;
+
+    &:after {
+      background-color: #555;
+      content: ' ';
+      height: .65rem;
+      left: 50%;
+      opacity: 0;
+      position: absolute;
+      top: 50%;
+      transform: translate(-56%, -50%);
+      transition: opacity .3s ease-out;
+      width: .65rem;
+    }
+
+    &.active {
+      &:after {
+        opacity: 1;
+      }
+    }
+  }
 }
 
 div.districts,
