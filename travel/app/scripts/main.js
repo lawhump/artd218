@@ -25,7 +25,7 @@ let ticking = false;
 
 const $ww = $('.waypoints-wrapper');
 const $addedWPs = $('.waypoints .added');
-const waypoints = ['Alamo Drafthouse'];
+const waypoints = [];
 
 const $container = $('.filtered-things ul');
 
@@ -290,6 +290,7 @@ $('.waypoints .recommended').addEventListener('click', (e) => {
 
   let addToAdded = (it) => {
     $('.waypoints .added').appendChild(it);
+    waypoints.push(it.innerText);
   };
 
   let changeImage = (img) => {
@@ -319,6 +320,7 @@ $('.waypoints .visited').addEventListener('click', (e) => {
 
   let addToAdded = (it) => {
     $('.waypoints .added').appendChild(it);
+    waypoints.push(it.innerText);
   };
 
   let changeImage = (img) => {
