@@ -188,10 +188,18 @@ $('div.activities').addEventListener('click', function (e) {
 });
 
 $('nav .districts.dropdown').addEventListener('click', function () {
+  var actDropdown = $('div.activities');
+  if (!actDropdown.classList.contains('hidden')) {
+    actDropdown.classList.add('hidden');
+  }
   $('div.districts').classList.toggle('hidden');
 });
 
 $('nav .activities.dropdown').addEventListener('click', function () {
+  var disDropdown = $('div.districts');
+  if (!disDropdown.classList.contains('hidden')) {
+    disDropdown.classList.add('hidden');
+  }
   $('div.activities').classList.toggle('hidden');
 });
 

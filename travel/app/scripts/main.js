@@ -192,10 +192,18 @@ $('div.activities').addEventListener('click', (e) => {
 });
 
 $('nav .districts.dropdown').addEventListener('click', () => {
+  let actDropdown = $('div.activities');
+  if (!(actDropdown.classList.contains('hidden'))) {
+    actDropdown.classList.add('hidden');
+  }
   $('div.districts').classList.toggle('hidden');
 });
 
 $('nav .activities.dropdown').addEventListener('click', () => {
+  let disDropdown = $('div.districts');
+  if (!(disDropdown.classList.contains('hidden'))) {
+    disDropdown.classList.add('hidden');
+  }
   $('div.activities').classList.toggle('hidden');
 });
 
