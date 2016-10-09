@@ -118,8 +118,17 @@
     width: 100%;
 
     span {
+      cursor: pointer;
       float: right;
+      opacity: 0;
       padding-right: 10%;
+      transition: opacity .15s ease-out;
+    }
+
+    &:hover {
+      span {
+        opacity: .5;
+      }
     }
   }
 }

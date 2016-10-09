@@ -79,6 +79,13 @@ $('.filtered-things ul').addEventListener('click', function (e) {
     if (!addedContainsThing) {
       var wp = document.createElement('LI');
       wp.innerText = thing;
+
+      var iconSpan = document.createElement('SPAN');
+      var icon = document.createElement('IMG');
+      icon.src = "dist/images/icons/check.png";
+
+      iconSpan.appendChild(icon);
+      wp.appendChild(iconSpan);
       $addedWPs.appendChild(wp);
 
       waypoints.push(thing);
@@ -242,5 +249,89 @@ $reset.addEventListener('click', function () {
   resetThings();
 
   filtered = undefined;
+});
+
+$('.waypoints .added').addEventListener('click', function (e) {
+  var removeFromAdded = function removeFromAdded(it) {
+    it.parentNode.removeChild(it);
+  };
+
+  var addToVisited = function addToVisited(it) {
+    $('.waypoints .visited').appendChild(it);
+  };
+
+  var changeImage = function changeImage(img) {
+    img.src = 'dist/images/icons/undo.png';
+  };
+
+  var moveFromAddedToVisited = function moveFromAddedToVisited(item) {
+    removeFromAdded(item);
+    addToVisited(item);
+    changeImage(item.querySelector('img'));
+  };
+
+  if (e.target) {
+    if (e.target.nodeName === 'SPAN') {
+      moveFromAddedToVisited(e.target.parentNode);
+    } else {
+      moveFromAddedToVisited(e.target.parentNode.parentNode);
+    }
+  }
+});
+
+$('.waypoints .recommended').addEventListener('click', function (e) {
+  var removeFromRecommended = function removeFromRecommended(it) {
+    it.parentNode.removeChild(it);
+  };
+
+  var addToAdded = function addToAdded(it) {
+    $('.waypoints .added').appendChild(it);
+  };
+
+  var changeImage = function changeImage(img) {
+    img.src = 'dist/images/icons/check.png';
+  };
+
+  var moveFromRecommendedToAdded = function moveFromRecommendedToAdded(item) {
+    removeFromRecommended(item);
+    addToAdded(item);
+    changeImage(item.querySelector('img'));
+  };
+
+  if (e.target) {
+    if (e.target.nodeName === 'SPAN') {
+      moveFromRecommendedToAdded(e.target.parentNode);
+    } else {
+      moveFromRecommendedToAdded(e.target.parentNode.parentNode);
+    }
+  }
+});
+
+$('.waypoints .visited').addEventListener('click', function (e) {
+  var removeFromVisited = function removeFromVisited(it) {
+    it.parentNode.removeChild(it);
+  };
+
+  var addToAdded = function addToAdded(it) {
+    $('.waypoints .added').appendChild(it);
+  };
+
+  var changeImage = function changeImage(img) {
+    img.src = 'dist/images/icons/check.png';
+  };
+
+  var moveFromVisitedToAdded = function moveFromVisitedToAdded(item) {
+    removeFromVisited(item);
+    addToAdded(item);
+    changeImage(item.querySelector('img'));
+  };
+
+  if (e.target) {
+    if (e.target.nodeName === 'SPAN') {
+      addToAdded(e.target.parentNode);
+    } else {
+      addToAdded(e.target.parentNode.parentNode);
+    }
+  }
 });
 //# sourceMappingURL=main.js.map

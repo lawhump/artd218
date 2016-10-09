@@ -81,6 +81,13 @@ $('.filtered-things ul').addEventListener('click', (e) => {
     if (!addedContainsThing) {
       let wp = document.createElement('LI');
       wp.innerText = thing;
+
+      let iconSpan = document.createElement('SPAN');
+      let icon = document.createElement('IMG');
+      icon.src = "dist/images/icons/check.png";
+
+      iconSpan.appendChild(icon);
+      wp.appendChild(iconSpan);
       $addedWPs.appendChild(wp);
 
       waypoints.push(thing);
@@ -245,4 +252,91 @@ $reset.addEventListener('click', () => {
   resetThings();
 
   filtered = undefined;
+});
+
+$('.waypoints .added').addEventListener('click', (e) => {
+  let removeFromAdded = (it) => {
+    it.parentNode.removeChild(it);
+  };
+
+  let addToVisited = (it) => {
+    $('.waypoints .visited').appendChild(it);
+  };
+
+  let changeImage = (img) => {
+    img.src = 'dist/images/icons/undo.png';
+  };
+
+  let moveFromAddedToVisited = (item) => {
+    removeFromAdded(item);
+    addToVisited(item);
+    changeImage(item.querySelector('img'));
+  };
+
+  if (e.target) {
+    if (e.target.nodeName === 'SPAN') {
+      moveFromAddedToVisited(e.target.parentNode);
+    }
+    else {
+      moveFromAddedToVisited(e.target.parentNode.parentNode);
+    }
+  }
+});
+
+$('.waypoints .recommended').addEventListener('click', (e) => {
+  let removeFromRecommended = (it) => {
+    it.parentNode.removeChild(it);
+  };
+
+  let addToAdded = (it) => {
+    $('.waypoints .added').appendChild(it);
+  };
+
+  let changeImage = (img) => {
+    img.src = 'dist/images/icons/check.png';
+  };
+
+  let moveFromRecommendedToAdded = (item) => {
+    removeFromRecommended(item);
+    addToAdded(item);
+    changeImage(item.querySelector('img'));
+  };
+
+  if (e.target) {
+    if (e.target.nodeName === 'SPAN') {
+      moveFromRecommendedToAdded(e.target.parentNode);
+    }
+    else {
+      moveFromRecommendedToAdded(e.target.parentNode.parentNode);
+    }
+  }
+});
+
+$('.waypoints .visited').addEventListener('click', (e) => {
+  let removeFromVisited = (it) => {
+    it.parentNode.removeChild(it);
+  };
+
+  let addToAdded = (it) => {
+    $('.waypoints .added').appendChild(it);
+  };
+
+  let changeImage = (img) => {
+    img.src = 'dist/images/icons/check.png';
+  };
+
+  let moveFromVisitedToAdded = (item) => {
+    removeFromVisited(item);
+    addToAdded(item);
+    changeImage(item.querySelector('img'));
+  };
+
+  if (e.target) {
+    if (e.target.nodeName === 'SPAN') {
+      addToAdded(e.target.parentNode);
+    }
+    else {
+      addToAdded(e.target.parentNode.parentNode);
+    }
+  }
 });
