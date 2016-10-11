@@ -82,7 +82,7 @@ $('.filtered-things ul').addEventListener('click', function (e) {
 
       var iconSpan = document.createElement('SPAN');
       var icon = document.createElement('IMG');
-      icon.src = "dist/images/icons/check.png";
+      icon.src = 'dist/images/icons/check.png';
 
       iconSpan.appendChild(icon);
       wp.appendChild(iconSpan);
@@ -330,9 +330,9 @@ $('.waypoints .visited').addEventListener('click', function (e) {
 
   if (e.target) {
     if (e.target.nodeName === 'SPAN') {
-      addToAdded(e.target.parentNode);
+      moveFromVisitedToAdded(e.target.parentNode);
     } else {
-      addToAdded(e.target.parentNode.parentNode);
+      moveFromVisitedToAdded(e.target.parentNode.parentNode);
     }
   }
 });

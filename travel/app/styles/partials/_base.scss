@@ -83,6 +83,7 @@ figcaption {
   bottom: 1.5rem;
   left: 1.5rem;
   padding: .2rem 1rem;
+  pointer-events: none;
   position: absolute;
 
   > * {
