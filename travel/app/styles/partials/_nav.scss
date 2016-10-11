@@ -1,6 +1,6 @@
 nav {
   @include shadow(1);
-  // padding: 4rem 0 0 0;
+  background-color: #E1E3DD;
   position: fixed;
   top: 0;
   width: 100vw;
@@ -10,6 +10,7 @@ nav {
 .dropdown {
   cursor: pointer;
   margin-right: 1rem;
+  position: relative;
 
   &:nth-child(3) {
     margin-right: 2rem;
@@ -17,6 +18,20 @@ nav {
 
   &:after {
     content: '▾';
+  }
+
+  &.active:before {
+    border-bottom: 4rem solid white;
+    border-left: 2rem solid transparent;
+    border-right: 2rem solid transparent;
+    content: ' ';
+    left: 50%;
+    height: 0;
+    position: absolute;
+    top: calc(100% + 0.4rem);
+    transform: translateX(-50%);
+    width: 0;
+    z-index: 100;
   }
 }
 

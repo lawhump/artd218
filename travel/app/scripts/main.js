@@ -237,16 +237,20 @@ $('nav .districts.dropdown').addEventListener('click', () => {
   let actDropdown = $('div.activities');
   if (!(actDropdown.classList.contains('hidden'))) {
     actDropdown.classList.add('hidden');
+    $('.dropdown.activities').classList.remove('active');
   }
   $('div.districts').classList.toggle('hidden');
+  $('.dropdown.districts').classList.toggle('active');
 });
 
 $('nav .activities.dropdown').addEventListener('click', () => {
   let disDropdown = $('div.districts');
   if (!(disDropdown.classList.contains('hidden'))) {
     disDropdown.classList.add('hidden');
+    $('.dropdown.districts').classList.remove('active');
   }
   $('div.activities').classList.toggle('hidden');
+  $('.dropdown.activities').classList.toggle('active');
 });
 
 $('nav .radio-input').addEventListener('click', () => {
