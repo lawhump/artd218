@@ -29,10 +29,45 @@ const waypoints = [];
 
 const $container = $('.filtered-things ul');
 
+let radioToggled = false;
+
 let removeChildren = () => {
   while ($container.firstChild) {
     $container.removeChild($container.firstChild);
   }
+};
+
+const reset = () => {
+  let resetString = () => {
+    $('span.time-sensitive').classList.add('hidden');
+    $('span.activity').innerText = 'Things to do';
+    if ($('span.activity').classList.contains('lc')) {
+      $('span.activity.lc').classList.remove('lc');
+    }
+    $('span.district').innerText = 'Austin';
+
+    let actAc = document.querySelectorAll('.active.activity');
+    let actDis = document.querySelectorAll('.active.district');
+
+    if (actAc.length > 0) {
+      actAc[0].classList.remove('active');
+    }
+
+    if (actDis.length > 0) {
+      actDis[0].classList.remove('active');
+    }
+  };
+
+  let resetThings = () => {
+    removeChildren();
+    _.map($things, (elem) => { $container.appendChild(elem); });
+  };
+
+
+  resetString();
+  resetThings();
+
+  filtered = undefined;
 };
 
 window.addEventListener('scroll', () => {
@@ -114,7 +149,7 @@ $('.filtered-things ul').addEventListener('click', (e) => {
   }
 
   else {
-    console.log('bink');
+    setTimeout(Function.prototype, 1000);
   }
 });
 
@@ -215,44 +250,52 @@ $('nav .activities.dropdown').addEventListener('click', () => {
 });
 
 $('nav .radio-input').addEventListener('click', () => {
+  let updateThings = () => {
+    let filter = (elem) => {
+      return elem.classList.contains('time-sensitive');
+    };
+
+    if (filtered === undefined) {
+      filtered = _.filter($things, filter);
+    }
+    else {
+      filtered = _.filter(filtered, filter);
+    }
+
+    removeChildren();
+    _.map(filtered, (elem) => { $container.appendChild(elem); });
+  };
+
+  let updateString = () => {
+    $('span.time-sensitive').classList.remove('hidden');
+    $('span.activity').classList.add('lc');
+
+    if ($reset.classList.contains('hidden')) {
+      $reset.classList.remove('hidden');
+    }
+  };
+  let showOnlyTimeSensitive = () => {
+    updateThings();
+    updateString();
+  };
+
+  radioToggled = !radioToggled;
+
+  if (radioToggled) {
+    showOnlyTimeSensitive();
+  }
+
+  else {
+    reset();
+  }
   $('nav .radio-input span').classList.toggle('active');
 });
 
 $ww.addEventListener('click', () => {
-  // $('.waypoints-wrapper .icon').classList.toggle('hidden');
-  // $ww.classList.toggle('active');
-  // $ww.querySelector('.waypoints').classList.toggle('hidden');
   $('div.waypoints').classList.toggle('hidden');
 });
 
-$reset.addEventListener('click', () => {
-  let resetString = () => {
-    $('span.activity').innerText = 'What to do';
-    $('span.district').innerText = 'Austin';
-
-    let actAc = document.querySelectorAll('.active.activity');
-    let actDis = document.querySelectorAll('.active.district');
-
-    if (actAc.length > 0) {
-      actAc[0].classList.remove('active');
-    }
-
-    if (actDis.length > 0) {
-      actDis[0].classList.remove('active');
-    }
-  };
-
-  let resetThings = () => {
-    removeChildren();
-    _.map($things, (elem) => { $container.appendChild(elem); });
-  };
-
-
-  resetString();
-  resetThings();
-
-  filtered = undefined;
-});
+$reset.addEventListener('click', reset);
 
 $('.waypoints .added').addEventListener('click', (e) => {
   let removeFromAdded = (it) => {

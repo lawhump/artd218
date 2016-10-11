@@ -29,10 +29,46 @@ var waypoints = [];
 
 var $container = $('.filtered-things ul');
 
+var radioToggled = false;
+
 var removeChildren = function removeChildren() {
   while ($container.firstChild) {
     $container.removeChild($container.firstChild);
   }
+};
+
+var reset = function reset() {
+  var resetString = function resetString() {
+    $('span.time-sensitive').classList.add('hidden');
+    $('span.activity').innerText = 'Things to do';
+    if ($('span.activity').classList.contains('lc')) {
+      $('span.activity.lc').classList.remove('lc');
+    }
+    $('span.district').innerText = 'Austin';
+
+    var actAc = document.querySelectorAll('.active.activity');
+    var actDis = document.querySelectorAll('.active.district');
+
+    if (actAc.length > 0) {
+      actAc[0].classList.remove('active');
+    }
+
+    if (actDis.length > 0) {
+      actDis[0].classList.remove('active');
+    }
+  };
+
+  var resetThings = function resetThings() {
+    removeChildren();
+    _.map($things, function (elem) {
+      $container.appendChild(elem);
+    });
+  };
+
+  resetString();
+  resetThings();
+
+  filtered = undefined;
 };
 
 window.addEventListener('scroll', function () {
@@ -108,7 +144,7 @@ $('.filtered-things ul').addEventListener('click', function (e) {
       addToWaypoints(e.target.innerText);
     }
   } else {
-    console.log('bink');
+    setTimeout(Function.prototype, 1000);
   }
 });
 
@@ -211,45 +247,51 @@ $('nav .activities.dropdown').addEventListener('click', function () {
 });
 
 $('nav .radio-input').addEventListener('click', function () {
-  $('nav .radio-input span').classList.toggle('active');
-});
+  var updateThings = function updateThings() {
+    var filter = function filter(elem) {
+      return elem.classList.contains('time-sensitive');
+    };
 
-$ww.addEventListener('click', function () {
-  // $('.waypoints-wrapper .icon').classList.toggle('hidden');
-  // $ww.classList.toggle('active');
-  // $ww.querySelector('.waypoints').classList.toggle('hidden');
-  $('div.waypoints').classList.toggle('hidden');
-});
-
-$reset.addEventListener('click', function () {
-  var resetString = function resetString() {
-    $('span.activity').innerText = 'What to do';
-    $('span.district').innerText = 'Austin';
-
-    var actAc = document.querySelectorAll('.active.activity');
-    var actDis = document.querySelectorAll('.active.district');
-
-    if (actAc.length > 0) {
-      actAc[0].classList.remove('active');
+    if (filtered === undefined) {
+      filtered = _.filter($things, filter);
+    } else {
+      filtered = _.filter(filtered, filter);
     }
 
-    if (actDis.length > 0) {
-      actDis[0].classList.remove('active');
-    }
-  };
-
-  var resetThings = function resetThings() {
     removeChildren();
-    _.map($things, function (elem) {
+    _.map(filtered, function (elem) {
       $container.appendChild(elem);
     });
   };
 
-  resetString();
-  resetThings();
+  var updateString = function updateString() {
+    $('span.time-sensitive').classList.remove('hidden');
+    $('span.activity').classList.add('lc');
 
-  filtered = undefined;
+    if ($reset.classList.contains('hidden')) {
+      $reset.classList.remove('hidden');
+    }
+  };
+  var showOnlyTimeSensitive = function showOnlyTimeSensitive() {
+    updateThings();
+    updateString();
+  };
+
+  radioToggled = !radioToggled;
+
+  if (radioToggled) {
+    showOnlyTimeSensitive();
+  } else {
+    reset();
+  }
+  $('nav .radio-input span').classList.toggle('active');
 });
+
+$ww.addEventListener('click', function () {
+  $('div.waypoints').classList.toggle('hidden');
+});
+
+$reset.addEventListener('click', reset);
 
 $('.waypoints .added').addEventListener('click', function (e) {
   var removeFromAdded = function removeFromAdded(it) {

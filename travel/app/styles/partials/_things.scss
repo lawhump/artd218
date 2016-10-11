@@ -10,6 +10,10 @@
     }
   }
 
+  span.activity.lc {
+    text-transform: lowercase;
+  }
+
   .reset {
     color: rgba(black, .1);
     cursor: pointer;
@@ -40,6 +44,17 @@
       position: absolute;
       top: 0;
       width: .5rem;
+    }
+
+  }
+
+  .time-sensitive {
+    article:after {
+      content: url('../images/icons/timer.png');
+      left: 100%;
+      margin-top: 1.25rem;
+      position: absolute;
+      top: 0;
     }
   }
 
