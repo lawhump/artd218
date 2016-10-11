@@ -190,6 +190,7 @@ $('div.districts').addEventListener('click', (e) => {
     updateThings();
     updateString();
     $('div.districts').classList.toggle('hidden');
+    $('.dropdown.districts').classList.remove('active');
   }
 });
 
@@ -230,6 +231,7 @@ $('div.activities').addEventListener('click', (e) => {
     updateThings();
     updateString();
     $('div.activities').classList.toggle('hidden');
+    $('.dropdown.activities').classList.remove('active');
   }
 });
 
