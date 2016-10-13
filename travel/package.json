@@ -40,7 +40,8 @@
       ]
     },
     "globals": {
-      "_": false
+      "_": false,
+      "Handlebars": false
     }
   }
 }

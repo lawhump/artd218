@@ -1,0 +1,45 @@
+.events {
+  margin-top: 10rem;
+
+  li.event {
+    display: inline-block;
+    margin-bottom: 6rem;
+    position: relative;
+    vertical-align: top;
+    width: 45%;
+
+    &:nth-child(2n) {
+      margin-left: 4%;
+
+      &:before {
+        background-color: #f2f2f2;
+        content: ' ';
+        height: 50%;
+        left: -7.5%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: .3rem;
+      }
+
+      &:after {
+        background-color: #f2f2f2;
+        content: ' ';
+        height: .3rem;
+        left: -100%;
+        margin-top: 3rem;
+        position: absolute;
+        top: 100%;
+        width: 180%;
+      }
+    }
+  }
+
+  .name > * {
+    display: inline;
+  }
+
+  h5 {
+    margin-top: 0;
+  }
+}

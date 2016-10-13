@@ -26,10 +26,10 @@
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div class="landing-wrapper">
+    <div class="landing-wrapper inactive">
       <div class="bg1"></div>
       <div class="bg2"></div>
-      <div class="modal-wrapper">
+      <div class="modal-wrapper right inactive">
         <div class="modal">
           <section class="landing">
             <img class="waypoint" src="https://d30y9cdsu7xlg0.cloudfront.net/png/110532-200.png" alt="" />
@@ -246,7 +246,7 @@
       </div>
     </nav>
 
-    <main class="wrapper stay">
+    <main class="wrapper">
       <section class="filtered-things">
         <!-- Subject to change -->
         <h4><span class="time-sensitive hidden">Time sensitive</span> <span class="activity">Things to do</span> near <span class="district">Austin</span> <span class="reset">Reset</span></h4>
@@ -1100,6 +1100,12 @@
         </ul>
       </section>
 
+      <section class="events">
+        <h4>Time sensitive events in Austin</h4>
+        <ul>
+
+        </ul>
+      </section>
     </main>
 
     <footer class="container-fluid">
@@ -1155,6 +1161,22 @@
       <small>Go make Austin weird ;)</small>
     </div>
 
+    <script id="thing-template" type="text/x-handlebars-template">
+      <li class="event">
+        <article>
+          <div class="name">
+            <h4>{{name}}</h4>
+            <h6>{{time}}</h6>
+          </div>
+          <h5>{{place}}</h5>
+          <p>
+            {{{blurb}}}
+            <br><a href="{{link}}">See more</a>
+          </p>
+        </article>
+      </li>
+    </script>
+
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
@@ -1167,6 +1189,7 @@
 
 
     <script src="https://cdn.jsdelivr.net/lodash/4.16.1/lodash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <!-- endbower -->

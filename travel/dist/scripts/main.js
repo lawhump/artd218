@@ -13,15 +13,15 @@ var $ = function $(query) {
 var $things = $('.thing');
 var filtered = void 0;
 
-var landing = $('.landing-wrapper');
-var modal = $('.modal-wrapper');
-var main = $('main.stay');
-var vHeight = $('.bg1').clientHeight;
+// const landing = $('.landing-wrapper');
+// const modal = $('.modal-wrapper');
+// const main = $('main.stay');
+// let vHeight = $('.bg1').clientHeight;
 
 var $reset = $('.filtered-things .reset');
 
-var lastPos = 0;
-var ticking = false;
+// let lastPos = 0;
+// let ticking = false;
 
 var $ww = $('.waypoints-wrapper');
 var $addedWPs = $('.waypoints .added');
@@ -71,42 +71,47 @@ var reset = function reset() {
   filtered = undefined;
 };
 
-window.addEventListener('scroll', function () {
-  var checkView = function checkView(pos) {
-    var goingDown = function goingDown() {
-      return lastPos < pos;
-    };
+var source = $('#thing-template').innerHTML;
+var template = Handlebars.compile(source);
 
-    if (goingDown) {
-      if (pos > .45 * vHeight) {
-        modal.classList.add('right');
-      }
-
-      if (pos > vHeight + 100) {
-        landing.classList.add('inactive');
-        modal.classList.add('inactive');
-        main.classList.remove('stay');
-      }
-    } else {
-      if (pos < vHeight) {
-        modal.classList.remove('right');
-      }
-
-      if (pos < vHeight + 99) {
-        landing.classList.remove('inactive');
-      }
-    }
-  };
-
-  lastPos = window.scrollY;
-  if (!ticking) {
-    window.requestAnimationFrame(function () {
-      checkView(lastPos);
-      ticking = false;
-    });
-  }
-  ticking = true;
-});
+// window.addEventListener('scroll', () => {
+//   let checkView = (pos) => {
+//     let goingDown = () => {
+//       return (lastPos < pos);
+//     };
+//
+//     if (goingDown) {
+//       if (pos > .45 * vHeight) {
+//         modal.classList.add('right');
+//       }
+//
+//       if (pos > (vHeight + 100)) {
+//         landing.classList.add('inactive');
+//         modal.classList.add('inactive');
+//         main.classList.remove('stay');
+//       }
+//     }
+//
+//     else {
+//       if (pos < vHeight) {
+//         modal.classList.remove('right');
+//       }
+//
+//       if (pos < (vHeight + 99)) {
+//         landing.classList.remove('inactive');
+//       }
+//     }
+//   };
+//
+//   lastPos = window.scrollY;
+//   if (!ticking) {
+//     window.requestAnimationFrame(() => {
+//       checkView(lastPos);
+//       ticking = false;
+//     });
+//   }
+//   ticking = true;
+// });
 
 $('.filtered-things ul').addEventListener('click', function (e) {
   var addToWaypoints = function addToWaypoints(thing) {
@@ -384,4 +389,49 @@ $('.waypoints .visited').addEventListener('click', function (e) {
     }
   }
 });
+
+var get = function get(url, callback) {
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function () {
+    if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+      callback(xmlHttp.responseText);
+    }
+  };
+  xmlHttp.open('GET', url, true); // true for asynchronous
+  xmlHttp.send(null);
+};
+
+// document.addEventListener('DOMContentLoaded', () => (event) {
+//
+// });
+
+(function () {
+  var addEventToDoc = function addEventToDoc(elem) {
+    var name = elem.querySelector('strong').innerText;
+    var time = elem.innerText.substring(0, elem.innerHTML.indexOf('<br>'));
+    var place = elem.querySelector('em').innerText;
+    var link = elem.querySelector('a').getAttribute('href').toString();
+    var blurb = elem.querySelector('span').innerHTML;
+    console.dir(blurb);
+
+    var context = {
+      name: name,
+      time: time,
+      link: link,
+      place: place,
+      blurb: blurb
+    };
+
+    var html = template(context);
+    $('.events ul').innerHTML += html;
+  };
+
+  var eventsURL = '../events/oct-nov.html';
+  get(eventsURL, function (res) {
+    var container = document.createElement('div');
+    container.innerHTML = res;
+    var events = container.querySelectorAll('.main_container p');
+    _.map(events, addEventToDoc);
+  });
+})();
 //# sourceMappingURL=main.js.map

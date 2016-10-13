@@ -10,18 +10,18 @@ const $ = (query) => {
   return res;
 };
 
-const $things = $('.thing');
+let $things = $('.thing');
 let filtered;
 
-const landing = $('.landing-wrapper');
-const modal = $('.modal-wrapper');
-const main = $('main.stay');
-let vHeight = $('.bg1').clientHeight;
+// const landing = $('.landing-wrapper');
+// const modal = $('.modal-wrapper');
+// const main = $('main.stay');
+// let vHeight = $('.bg1').clientHeight;
 
 const $reset = $('.filtered-things .reset');
 
-let lastPos = 0;
-let ticking = false;
+// let lastPos = 0;
+// let ticking = false;
 
 const $ww = $('.waypoints-wrapper');
 const $addedWPs = $('.waypoints .added');
@@ -70,44 +70,47 @@ const reset = () => {
   filtered = undefined;
 };
 
-window.addEventListener('scroll', () => {
-  let checkView = (pos) => {
-    let goingDown = () => {
-      return (lastPos < pos);
-    };
+const source = $('#thing-template').innerHTML;
+const template = Handlebars.compile(source);
 
-    if (goingDown) {
-      if (pos > .45 * vHeight) {
-        modal.classList.add('right');
-      }
-
-      if (pos > (vHeight + 100)) {
-        landing.classList.add('inactive');
-        modal.classList.add('inactive');
-        main.classList.remove('stay');
-      }
-    }
-
-    else {
-      if (pos < vHeight) {
-        modal.classList.remove('right');
-      }
-
-      if (pos < (vHeight + 99)) {
-        landing.classList.remove('inactive');
-      }
-    }
-  };
-
-  lastPos = window.scrollY;
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      checkView(lastPos);
-      ticking = false;
-    });
-  }
-  ticking = true;
-});
+// window.addEventListener('scroll', () => {
+//   let checkView = (pos) => {
+//     let goingDown = () => {
+//       return (lastPos < pos);
+//     };
+//
+//     if (goingDown) {
+//       if (pos > .45 * vHeight) {
+//         modal.classList.add('right');
+//       }
+//
+//       if (pos > (vHeight + 100)) {
+//         landing.classList.add('inactive');
+//         modal.classList.add('inactive');
+//         main.classList.remove('stay');
+//       }
+//     }
+//
+//     else {
+//       if (pos < vHeight) {
+//         modal.classList.remove('right');
+//       }
+//
+//       if (pos < (vHeight + 99)) {
+//         landing.classList.remove('inactive');
+//       }
+//     }
+//   };
+//
+//   lastPos = window.scrollY;
+//   if (!ticking) {
+//     window.requestAnimationFrame(() => {
+//       checkView(lastPos);
+//       ticking = false;
+//     });
+//   }
+//   ticking = true;
+// });
 
 $('.filtered-things ul').addEventListener('click', (e) => {
   let addToWaypoints = (thing) => {
@@ -391,3 +394,48 @@ $('.waypoints .visited').addEventListener('click', (e) => {
     }
   }
 });
+
+const get = (url, callback) => {
+  var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+        if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+          callback(xmlHttp.responseText);
+        }
+    };
+    xmlHttp.open('GET', url, true); // true for asynchronous
+    xmlHttp.send(null);
+};
+
+// document.addEventListener('DOMContentLoaded', () => (event) {
+//
+// });
+
+(() => {
+  let addEventToDoc = (elem) => {
+    let name = elem.querySelector('strong').innerText;
+    let time = elem.innerText.substring(0, elem.innerHTML.indexOf('<br>'));
+    let place = elem.querySelector('em').innerText;
+    let link = elem.querySelector('a').getAttribute('href').toString();
+    let blurb = elem.querySelector('span').innerHTML;
+    console.dir(blurb);
+
+    let context = {
+      name: name,
+      time: time,
+      link: link,
+      place: place,
+      blurb: blurb
+    };
+
+    let html = template(context);
+    $('.events ul').innerHTML += html;
+  };
+
+  let eventsURL = '../events/oct-nov.html';
+  get(eventsURL, (res) => {
+    var container = document.createElement('div');
+    container.innerHTML = res;
+    let events = container.querySelectorAll('.main_container p');
+    _.map(events, addEventToDoc);
+  });
+})();
