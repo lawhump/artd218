@@ -139,7 +139,7 @@
         <ul>
           <li>
             <figure>
-              <img data-district="downtown" src="https://placeimg.com/520/170/arch" alt="">
+              <img data-district="downtown" src="dist/images/districts/downtown.png" alt="">
               <figcaption>
                 <h3>Downtown</h3>
               </figcaption>
@@ -147,7 +147,7 @@
           </li>
           <li>
             <figure>
-              <img data-district="south lamar" src="https://placeimg.com/520/170/arch" alt="">
+              <img data-district="south lamar" src="dist/images/districts/south-lamar.jpg" alt="">
               <figcaption>
                 <h3>South Lamar</h3>
               </figcaption>
@@ -155,7 +155,7 @@
           </li>
           <li>
             <figure>
-              <img data-district="great hills" src="https://placeimg.com/520/170/arch" alt="">
+              <img data-district="great hills" src="dist/images/districts/great-hills.jpg" alt="">
               <figcaption>
                 <h3>Great Hills</h3>
               </figcaption>
@@ -163,7 +163,7 @@
           </li>
           <li>
             <figure>
-              <img data-district="west campus" src="https://placeimg.com/520/170/arch" alt="">
+              <img data-district="west campus" src="dist/images/districts/west-campus.jpg" alt="">
               <figcaption>
                 <h3>West Campus</h3>
               </figcaption>
@@ -171,7 +171,7 @@
           </li>
           <li>
             <figure>
-              <img data-district="south austin" src="https://placeimg.com/520/170/arch" alt="">
+              <img data-district="south austin" src="dist/images/districts/south-austin.jpg" alt="">
               <figcaption>
                 <h3>South Austin</h3>
               </figcaption>
@@ -187,7 +187,7 @@
           </li>
           <li>
             <figure>
-              <img data-district="warehouse district" src="https://placeimg.com/520/170/arch" alt="">
+              <img data-district="warehouse district" src="dist/images/districts/warehouse.jpg" alt="">
               <figcaption>
                 <h3>Warehouse District</h3>
               </figcaption>
@@ -195,7 +195,7 @@
           </li>
           <li>
             <figure>
-              <img data-district="domain" src="https://placeimg.com/520/170/arch" alt="">
+              <img data-district="domain" src="dist/images/districts/domain.jpg" alt="">
               <figcaption>
                 <h3>Domain</h3>
               </figcaption>
@@ -203,7 +203,7 @@
           </li>
           <li>
             <figure>
-              <img data-district="barton hills" src="https://placeimg.com/520/170/arch" alt="">
+              <img data-district="barton hills" src="dist/images/districts/barton-hills.jpg" alt="">
               <figcaption>
                 <h3>Barton Hills</h3>
               </figcaption>
@@ -224,11 +224,11 @@
           <div>
             <h5>Recommended</h5>
             <ul class="recommended">
-              <li>Uncommon Objects<span><img src="dist/images/icons/add-dark.png" alt=""></span></li>
-              <li>Mount Bonnell<span><img src="dist/images/icons/add-dark.png" alt=""></span></li>
-              <li>Hey!... You Gonna Eat or What?<span><img src="dist/images/icons/add-dark.png" alt=""></span></li>
-              <li>Container Bar<span><img src="dist/images/icons/add-dark.png" alt=""></span></li>
-              <li>Shenanigans<span><img src="dist/images/icons/add-dark.png" alt=""></span></li>
+              <li>Uncommon Objects<span><img class="add" src="dist/images/icons/add-dark.png" alt=""><img class="remove" src="dist/images/icons/remove.png" alt=""></span></li>
+              <li>Mount Bonnell<span><img class="add" src="dist/images/icons/add-dark.png" alt=""><img class="remove" src="dist/images/icons/remove.png" alt=""></span></li>
+              <li>Hey!... You Gonna Eat or What?<span><img class="add" src="dist/images/icons/add-dark.png" alt=""><img class="remove" src="dist/images/icons/remove.png" alt=""></span></li>
+              <li>Container Bar<span><img class="add" src="dist/images/icons/add-dark.png" alt=""><img class="remove" src="dist/images/icons/remove.png" alt=""></span></li>
+              <li>Shenanigans<span><img class="add" src="dist/images/icons/add-dark.png" alt=""><img class="remove" src="dist/images/icons/remove.png" alt=""></span></li>
             </ul>
           </div>
 
@@ -903,12 +903,14 @@
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
-      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-      e.src='https://www.google-analytics.com/analytics.js';
-      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','UA-XXXXX-X');ga('send','pageview');
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-85717657-1', 'auto');
+      ga('send', 'pageview');
+
     </script>
 
 
