@@ -466,7 +466,7 @@ $('.waypoints .visited').addEventListener('click', (e) => {
     $('.events ul').innerHTML += html;
   };
 
-  let eventsURL = '../events/oct-nov.html';
+  let eventsURL = 'events/oct-nov.html';
   get(eventsURL, (res) => {
     var container = document.createElement('div');
     container.innerHTML = res;
