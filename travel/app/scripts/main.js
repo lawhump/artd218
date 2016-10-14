@@ -22,6 +22,7 @@ const get = (url, callback) => {
 };
 
 let $things = $('.thing');
+let $events;
 let filtered;
 
 // const landing = $('.landing-wrapper');
@@ -29,22 +30,20 @@ let filtered;
 // const main = $('main.stay');
 // let vHeight = $('.bg1').clientHeight;
 
-const $reset = $('.filtered-things .reset');
-
 // let lastPos = 0;
 // let ticking = false;
 
+const $reset = $('.filtered-things .reset');
 const $ww = $('.waypoints-wrapper');
 const $addedWPs = $('.waypoints .added');
-const waypoints = [];
-
 const $container = $('.filtered-things ul');
+const waypoints = [];
 
 let radioToggled = false;
 
-let removeChildren = () => {
-  while ($container.firstChild) {
-    $container.removeChild($container.firstChild);
+const removeChildren = (c) => {
+  while (c.firstChild) {
+    c.removeChild(c.firstChild);
   }
 };
 
@@ -70,7 +69,7 @@ const reset = () => {
   };
 
   let resetThings = () => {
-    removeChildren();
+    removeChildren($container);
     _.map($things, (elem) => { $container.appendChild(elem); });
   };
 
@@ -185,7 +184,7 @@ $('div.districts').addEventListener('click', (e) => {
       filtered = _.filter(filtered, filter);
     }
 
-    removeChildren();
+    removeChildren($container);
     _.map(filtered, (elem) => { $container.appendChild(elem); });
   };
 
@@ -226,7 +225,7 @@ $('div.activities').addEventListener('click', (e) => {
       filtered = _.filter(filtered, filter);
     }
 
-    removeChildren();
+    removeChildren($container);
     _.map(filtered, (elem) => { $container.appendChild(elem); });
   };
 
@@ -282,7 +281,7 @@ $('nav .radio-input').addEventListener('click', () => {
       filtered = _.filter(filtered, filter);
     }
 
-    removeChildren();
+    removeChildren($container);
     _.map(filtered, (elem) => { $container.appendChild(elem); });
   };
 
@@ -299,6 +298,12 @@ $('nav .radio-input').addEventListener('click', () => {
     updateString();
   };
 
+  let resetEvents = () => {
+    let c = $('.events ul');
+    removeChildren(c);
+    _.map($events, (elem) => { c.appendChild(elem); });
+  };
+
   radioToggled = !radioToggled;
   $('nav .range').classList.toggle('hidden');
 
@@ -308,6 +313,7 @@ $('nav .radio-input').addEventListener('click', () => {
 
   else {
     reset();
+    resetEvents();
   }
   $('nav .radio-input span').classList.toggle('active');
 });
@@ -411,7 +417,36 @@ $('.waypoints .visited').addEventListener('click', (e) => {
 //
 // });
 
+
 (() => {
+  let updateEvents = (date) => {
+    let filter = (elem) => {
+      // I only care about the first date in the range
+      let eDate = elem.querySelector('h6').innerText.split('-')[0];
+      console.log('eDate = ' + eDate + ' and date = ' + date);
+      let eMon = parseInt(eDate.split('/')[0]);
+      let eDay = parseInt(eDate.split('/')[1]);
+      let eYear = parseInt('20' + eDate.split('/')[2]);
+
+      let mon = parseInt(date.split('/')[0]);
+      let day = parseInt(date.split('/')[1]);
+      let year = parseInt(date.split('/')[2]);
+
+      // console.log('year <= eYear: ' + year <= eYear + ', mon <= eMon: ' + mon <= eMon + ', day <= eDay: ' + day <= eDay);
+
+      return (year <= eYear && mon <= eMon && day <= eDay);
+    };
+
+    let $evs = $('.event');
+
+    let $filtered = _.filter($evs, filter);
+
+    let $c = $('.events ul');
+    removeChildren($c);
+
+    _.map($filtered, (elem) => { $c.appendChild(elem); });
+  };
+
   let addEventToDoc = (elem) => {
     let name = elem.querySelector('strong').innerText;
     let time = elem.innerText.substring(0, elem.innerHTML.indexOf('<br>'));
@@ -437,20 +472,19 @@ $('.waypoints .visited').addEventListener('click', (e) => {
     container.innerHTML = res;
     let events = container.querySelectorAll('.main_container p');
     _.map(events, addEventToDoc);
+    $events = $('.event');
   });
 
   $('nav .range').flatpickr({
     'clickOpens': true,
-    'mode': 'range',
     'wrap': true,
     'onChange': (dateObj, dateStr, instance) => {
       let date = dateStr.split('-');
       let dateF = [ date[1], date[2], date[0] ].join('/');
-      console.log(dateF);
-      // updateEvents();
-      // console.log(dateStr);
-      console.log(instance);
+
       instance.input.value = dateF;
+
+      updateEvents(dateF);
     }
   });
 })();

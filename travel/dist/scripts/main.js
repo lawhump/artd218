@@ -22,6 +22,7 @@ var get = function get(url, callback) {
 };
 
 var $things = $('.thing');
+var $events = void 0;
 var filtered = void 0;
 
 // const landing = $('.landing-wrapper');
@@ -29,22 +30,20 @@ var filtered = void 0;
 // const main = $('main.stay');
 // let vHeight = $('.bg1').clientHeight;
 
-var $reset = $('.filtered-things .reset');
-
 // let lastPos = 0;
 // let ticking = false;
 
+var $reset = $('.filtered-things .reset');
 var $ww = $('.waypoints-wrapper');
 var $addedWPs = $('.waypoints .added');
-var waypoints = [];
-
 var $container = $('.filtered-things ul');
+var waypoints = [];
 
 var radioToggled = false;
 
-var removeChildren = function removeChildren() {
-  while ($container.firstChild) {
-    $container.removeChild($container.firstChild);
+var removeChildren = function removeChildren(c) {
+  while (c.firstChild) {
+    c.removeChild(c.firstChild);
   }
 };
 
@@ -70,7 +69,7 @@ var reset = function reset() {
   };
 
   var resetThings = function resetThings() {
-    removeChildren();
+    removeChildren($container);
     _.map($things, function (elem) {
       $container.appendChild(elem);
     });
@@ -181,7 +180,7 @@ $('div.districts').addEventListener('click', function (e) {
       filtered = _.filter(filtered, filter);
     }
 
-    removeChildren();
+    removeChildren($container);
     _.map(filtered, function (elem) {
       $container.appendChild(elem);
     });
@@ -223,7 +222,7 @@ $('div.activities').addEventListener('click', function (e) {
       filtered = _.filter(filtered, filter);
     }
 
-    removeChildren();
+    removeChildren($container);
     _.map(filtered, function (elem) {
       $container.appendChild(elem);
     });
@@ -280,7 +279,7 @@ $('nav .radio-input').addEventListener('click', function () {
       filtered = _.filter(filtered, filter);
     }
 
-    removeChildren();
+    removeChildren($container);
     _.map(filtered, function (elem) {
       $container.appendChild(elem);
     });
@@ -299,6 +298,14 @@ $('nav .radio-input').addEventListener('click', function () {
     updateString();
   };
 
+  var resetEvents = function resetEvents() {
+    var c = $('.events ul');
+    removeChildren(c);
+    _.map($events, function (elem) {
+      c.appendChild(elem);
+    });
+  };
+
   radioToggled = !radioToggled;
   $('nav .range').classList.toggle('hidden');
 
@@ -306,6 +313,7 @@ $('nav .radio-input').addEventListener('click', function () {
     showOnlyTimeSensitive();
   } else {
     reset();
+    resetEvents();
   }
   $('nav .radio-input span').classList.toggle('active');
 });
@@ -406,7 +414,38 @@ $('.waypoints .visited').addEventListener('click', function (e) {
 //
 // });
 
+
 (function () {
+  var updateEvents = function updateEvents(date) {
+    var filter = function filter(elem) {
+      // I only care about the first date in the range
+      var eDate = elem.querySelector('h6').innerText.split('-')[0];
+      console.log('eDate = ' + eDate + ' and date = ' + date);
+      var eMon = parseInt(eDate.split('/')[0]);
+      var eDay = parseInt(eDate.split('/')[1]);
+      var eYear = parseInt('20' + eDate.split('/')[2]);
+
+      var mon = parseInt(date.split('/')[0]);
+      var day = parseInt(date.split('/')[1]);
+      var year = parseInt(date.split('/')[2]);
+
+      // console.log('year <= eYear: ' + year <= eYear + ', mon <= eMon: ' + mon <= eMon + ', day <= eDay: ' + day <= eDay);
+
+      return year <= eYear && mon <= eMon && day <= eDay;
+    };
+
+    var $evs = $('.event');
+
+    var $filtered = _.filter($evs, filter);
+
+    var $c = $('.events ul');
+    removeChildren($c);
+
+    _.map($filtered, function (elem) {
+      $c.appendChild(elem);
+    });
+  };
+
   var addEventToDoc = function addEventToDoc(elem) {
     var name = elem.querySelector('strong').innerText;
     var time = elem.innerText.substring(0, elem.innerHTML.indexOf('<br>'));
@@ -432,20 +471,19 @@ $('.waypoints .visited').addEventListener('click', function (e) {
     container.innerHTML = res;
     var events = container.querySelectorAll('.main_container p');
     _.map(events, addEventToDoc);
+    $events = $('.event');
   });
 
   $('nav .range').flatpickr({
     'clickOpens': true,
-    'mode': 'range',
     'wrap': true,
     'onChange': function onChange(dateObj, dateStr, instance) {
       var date = dateStr.split('-');
       var dateF = [date[1], date[2], date[0]].join('/');
-      console.log(dateF);
-      // updateEvents();
-      // console.log(dateStr);
-      console.log(instance);
+
       instance.input.value = dateF;
+
+      updateEvents(dateF);
     }
   });
 })();
