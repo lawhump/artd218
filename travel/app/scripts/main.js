@@ -133,10 +133,16 @@ $('.filtered-things ul').addEventListener('click', (e) => {
       wp.innerText = thing;
 
       let iconSpan = document.createElement('SPAN');
-      let icon = document.createElement('IMG');
-      icon.src = 'dist/images/icons/check.png';
+      let cIcon = document.createElement('IMG');
+      cIcon.src = 'dist/images/icons/check.png';
+      cIcon.classList.add('check');
+      let rIcon = document.createElement('IMG');
+      rIcon.src = 'dist/images/icons/remove.png';
+      rIcon.classList.add('remove');
 
-      iconSpan.appendChild(icon);
+      iconSpan.appendChild(cIcon);
+      iconSpan.appendChild(rIcon);
+
       wp.appendChild(iconSpan);
       $addedWPs.appendChild(wp);
 
@@ -371,7 +377,7 @@ $ww.addEventListener('click', () => {
 $reset.addEventListener('click', reset);
 
 $('.waypoints .added').addEventListener('click', (e) => {
-  let removeFromAdded = (it) => {
+  let removeMe = (it) => {
     it.parentNode.removeChild(it);
   };
 
@@ -384,23 +390,26 @@ $('.waypoints .added').addEventListener('click', (e) => {
   };
 
   let moveFromAddedToVisited = (item) => {
-    removeFromAdded(item);
+    removeMe(item);
     addToVisited(item);
-    changeImage(item.querySelector('img'));
+    changeImage(item.querySelector('.check'));
   };
 
   if (e.target) {
-    if (e.target.nodeName === 'SPAN') {
-      moveFromAddedToVisited(e.target.parentNode);
+    if (e.target.nodeName === 'IMG' && e.target.classList.contains('check')) {
+      moveFromAddedToVisited(e.target.parentNode.parentNode);
+    }
+    else if (e.target.nodeName === 'IMG' && e.target.classList.contains('remove')) {
+      removeMe(e.target.parentNode.parentNode);
     }
     else {
-      moveFromAddedToVisited(e.target.parentNode.parentNode);
+      moveFromAddedToVisited(e.target.parentNode);
     }
   }
 });
 
 $('.waypoints .recommended').addEventListener('click', (e) => {
-  let removeFromRecommended = (it) => {
+  let removeMe = (it) => {
     it.parentNode.removeChild(it);
   };
 
@@ -414,7 +423,7 @@ $('.waypoints .recommended').addEventListener('click', (e) => {
   };
 
   let moveFromRecommendedToAdded = (item) => {
-    removeFromRecommended(item);
+    removeMe(item);
     addToAdded(item);
     changeImage(item.querySelector('img'));
   };
@@ -430,7 +439,7 @@ $('.waypoints .recommended').addEventListener('click', (e) => {
 });
 
 $('.waypoints .visited').addEventListener('click', (e) => {
-  let removeFromVisited = (it) => {
+  let removeMe = (it) => {
     it.parentNode.removeChild(it);
   };
 
@@ -444,17 +453,20 @@ $('.waypoints .visited').addEventListener('click', (e) => {
   };
 
   let moveFromVisitedToAdded = (item) => {
-    removeFromVisited(item);
+    removeMe(item);
     addToAdded(item);
-    changeImage(item.querySelector('img'));
+    changeImage(item.querySelector('.check'));
   };
 
   if (e.target) {
-    if (e.target.nodeName === 'SPAN') {
-      moveFromVisitedToAdded(e.target.parentNode);
+    if (e.target.nodeName === 'IMG' && e.target.classList.contains('check')) {
+      moveFromVisitedToAdded(e.target.parentNode.parentNode);
+    }
+    else if (e.target.nodeName === 'IMG' && e.target.classList.contains('remove')) {
+      removeMe(e.target.parentNode.parentNode);
     }
     else {
-      moveFromVisitedToAdded(e.target.parentNode.parentNode);
+      moveFromVisitedToAdded(e.target.parentNode);
     }
   }
 });

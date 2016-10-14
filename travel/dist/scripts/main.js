@@ -134,10 +134,16 @@ $('.filtered-things ul').addEventListener('click', function (e) {
       wp.innerText = thing;
 
       var iconSpan = document.createElement('SPAN');
-      var icon = document.createElement('IMG');
-      icon.src = 'dist/images/icons/check.png';
+      var cIcon = document.createElement('IMG');
+      cIcon.src = 'dist/images/icons/check.png';
+      cIcon.classList.add('check');
+      var rIcon = document.createElement('IMG');
+      rIcon.src = 'dist/images/icons/remove.png';
+      rIcon.classList.add('remove');
 
-      iconSpan.appendChild(icon);
+      iconSpan.appendChild(cIcon);
+      iconSpan.appendChild(rIcon);
+
       wp.appendChild(iconSpan);
       $addedWPs.appendChild(wp);
 
@@ -370,7 +376,7 @@ $ww.addEventListener('click', function () {
 $reset.addEventListener('click', reset);
 
 $('.waypoints .added').addEventListener('click', function (e) {
-  var removeFromAdded = function removeFromAdded(it) {
+  var removeMe = function removeMe(it) {
     it.parentNode.removeChild(it);
   };
 
@@ -383,22 +389,24 @@ $('.waypoints .added').addEventListener('click', function (e) {
   };
 
   var moveFromAddedToVisited = function moveFromAddedToVisited(item) {
-    removeFromAdded(item);
+    removeMe(item);
     addToVisited(item);
-    changeImage(item.querySelector('img'));
+    changeImage(item.querySelector('.check'));
   };
 
   if (e.target) {
-    if (e.target.nodeName === 'SPAN') {
-      moveFromAddedToVisited(e.target.parentNode);
-    } else {
+    if (e.target.nodeName === 'IMG' && e.target.classList.contains('check')) {
       moveFromAddedToVisited(e.target.parentNode.parentNode);
+    } else if (e.target.nodeName === 'IMG' && e.target.classList.contains('remove')) {
+      removeMe(e.target.parentNode.parentNode);
+    } else {
+      moveFromAddedToVisited(e.target.parentNode);
     }
   }
 });
 
 $('.waypoints .recommended').addEventListener('click', function (e) {
-  var removeFromRecommended = function removeFromRecommended(it) {
+  var removeMe = function removeMe(it) {
     it.parentNode.removeChild(it);
   };
 
@@ -412,7 +420,7 @@ $('.waypoints .recommended').addEventListener('click', function (e) {
   };
 
   var moveFromRecommendedToAdded = function moveFromRecommendedToAdded(item) {
-    removeFromRecommended(item);
+    removeMe(item);
     addToAdded(item);
     changeImage(item.querySelector('img'));
   };
@@ -427,7 +435,7 @@ $('.waypoints .recommended').addEventListener('click', function (e) {
 });
 
 $('.waypoints .visited').addEventListener('click', function (e) {
-  var removeFromVisited = function removeFromVisited(it) {
+  var removeMe = function removeMe(it) {
     it.parentNode.removeChild(it);
   };
 
@@ -441,16 +449,18 @@ $('.waypoints .visited').addEventListener('click', function (e) {
   };
 
   var moveFromVisitedToAdded = function moveFromVisitedToAdded(item) {
-    removeFromVisited(item);
+    removeMe(item);
     addToAdded(item);
-    changeImage(item.querySelector('img'));
+    changeImage(item.querySelector('.check'));
   };
 
   if (e.target) {
-    if (e.target.nodeName === 'SPAN') {
-      moveFromVisitedToAdded(e.target.parentNode);
-    } else {
+    if (e.target.nodeName === 'IMG' && e.target.classList.contains('check')) {
       moveFromVisitedToAdded(e.target.parentNode.parentNode);
+    } else if (e.target.nodeName === 'IMG' && e.target.classList.contains('remove')) {
+      removeMe(e.target.parentNode.parentNode);
+    } else {
+      moveFromVisitedToAdded(e.target.parentNode);
     }
   }
 });
