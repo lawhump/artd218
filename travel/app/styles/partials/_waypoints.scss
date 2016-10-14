@@ -53,8 +53,15 @@
   }
 
   .icon {
+    margin-top: 0;
     vertical-align: middle;
     width: 4rem;
+  }
+
+  @media screen and (max-width: 991px) {
+    .icon {
+      margin-top: 2.5rem;
+    }
   }
 
   ul {

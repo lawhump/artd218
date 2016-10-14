@@ -84,44 +84,46 @@ var reset = function reset() {
 var source = $('#thing-template').innerHTML;
 var template = Handlebars.compile(source);
 
-// window.addEventListener('scroll', () => {
-//   let checkView = (pos) => {
-//     let goingDown = () => {
-//       return (lastPos < pos);
-//     };
-//
-//     if (goingDown) {
-//       if (pos > .45 * vHeight) {
-//         modal.classList.add('right');
-//       }
-//
-//       if (pos > (vHeight + 100)) {
-//         landing.classList.add('inactive');
-//         modal.classList.add('inactive');
-//         main.classList.remove('stay');
-//       }
-//     }
-//
-//     else {
-//       if (pos < vHeight) {
-//         modal.classList.remove('right');
-//       }
-//
-//       if (pos < (vHeight + 99)) {
-//         landing.classList.remove('inactive');
-//       }
-//     }
-//   };
-//
-//   lastPos = window.scrollY;
-//   if (!ticking) {
-//     window.requestAnimationFrame(() => {
-//       checkView(lastPos);
-//       ticking = false;
-//     });
-//   }
-//   ticking = true;
-// });
+/*
+window.addEventListener('scroll', () => {
+  let checkView = (pos) => {
+    let goingDown = () => {
+      return (lastPos < pos);
+    };
+
+    if (goingDown) {
+      if (pos > .45 * vHeight) {
+        modal.classList.add('right');
+      }
+
+      if (pos > (vHeight + 100)) {
+        landing.classList.add('inactive');
+        modal.classList.add('inactive');
+        main.classList.remove('stay');
+      }
+    }
+
+    else {
+      if (pos < vHeight) {
+        modal.classList.remove('right');
+      }
+
+      if (pos < (vHeight + 99)) {
+        landing.classList.remove('inactive');
+      }
+    }
+  };
+
+  lastPos = window.scrollY;
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      checkView(lastPos);
+      ticking = false;
+    });
+  }
+  ticking = true;
+});
+*/
 
 $('.filtered-things ul').addEventListener('click', function (e) {
   var addToWaypoints = function addToWaypoints(thing) {
@@ -284,7 +286,6 @@ $('nav .radio-input').addEventListener('click', function () {
       $container.appendChild(elem);
     });
   };
-
   var updateString = function updateString() {
     $('span.time-sensitive').classList.remove('hidden');
     $('span.activity').classList.add('lc');
@@ -297,7 +298,6 @@ $('nav .radio-input').addEventListener('click', function () {
     updateThings();
     updateString();
   };
-
   var resetEvents = function resetEvents() {
     var c = $('.events ul');
     removeChildren(c);
@@ -306,11 +306,56 @@ $('nav .radio-input').addEventListener('click', function () {
     });
   };
 
+  // Not my code, change the easing
+  var smoothScroll = function smoothScroll(eID) {
+    var elmYPosition = function elmYPosition(eID) {
+      var elm = document.getElementById(eID);
+      var y = elm.offsetTop;
+      var node = elm;
+      while (node.offsetParent && node.offsetParent != document.body) {
+        node = node.offsetParent;
+        y += node.offsetTop;
+      }return y;
+    };
+    var currentYPosition = function currentYPosition() {
+      // Firefox, Chrome, Opera, Safari
+      if (self.pageYOffset) return self.pageYOffset;
+      // Internet Explorer 6 - standards mode
+      if (document.documentElement && document.documentElement.scrollTop) return document.documentElement.scrollTop;
+      // Internet Explorer 6, 7 and 8
+      if (document.body.scrollTop) return document.body.scrollTop;
+      return 0;
+    };
+
+    var startY = currentYPosition();
+    var stopY = elmYPosition(eID) - 110; // To offset the nav and a lil whitespace
+    var distance = stopY > startY ? stopY - startY : startY - stopY;
+    if (distance < 100) {
+      scrollTo(0, stopY);return;
+    }
+    var speed = Math.round(distance / 100);
+    if (speed >= 20) speed = 20;
+    var step = Math.round(distance / 25);
+    var leapY = stopY > startY ? startY + step : startY - step;
+    var timer = 0;
+    if (stopY > startY) {
+      for (var i = startY; i < stopY; i += step) {
+        setTimeout('window.scrollTo(0, ' + leapY + ')', timer * speed);
+        leapY += step;if (leapY > stopY) leapY = stopY;timer++;
+      }return;
+    }
+    for (var _i = startY; _i > stopY; _i -= step) {
+      setTimeout('window.scrollTo(0, ' + leapY + ')', timer * speed);
+      leapY -= step;if (leapY < stopY) leapY = stopY;timer++;
+    }
+  };
+
   radioToggled = !radioToggled;
   $('nav .range').classList.toggle('hidden');
 
   if (radioToggled) {
-    showOnlyTimeSensitive();
+    // showOnlyTimeSensitive();
+    smoothScroll('events');
   } else {
     reset();
     resetEvents();
@@ -409,11 +454,6 @@ $('.waypoints .visited').addEventListener('click', function (e) {
     }
   }
 });
-
-// document.addEventListener('DOMContentLoaded', () => (event) {
-//
-// });
-
 
 (function () {
   var updateEvents = function updateEvents(date) {

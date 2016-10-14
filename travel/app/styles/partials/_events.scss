@@ -35,6 +35,33 @@
     }
   }
 
+  @media screen and (max-width: 767px) {
+    li.event {
+      margin: 0 auto 5rem auto;
+      width: 90%;
+
+      &:nth-child(n) {
+        margin-left: 0;
+
+        &:before {
+          content: none;
+        }
+
+        &:after {
+          background-color: #f2f2f2;
+          content: ' ';
+          height: .3rem;
+          left: 50%;
+          margin-top: 1.5rem;
+          position: absolute;
+          top: 100%;
+          transform: translateX(-50%);
+          width: 80%;
+        }
+      }
+    }
+  }
+
   .name > * {
     display: inline;
   }

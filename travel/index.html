@@ -54,14 +54,14 @@
           <h6 class="dropdown activities">Type of Activity</h6>
           <h6 class="dropdown districts">District</h6>
           <!-- <h6 class="radio-input">Austin Exclusives</h6> -->
-          <h6 class="radio-input"><span class=""></span>Time Sensitive</h6>
+          <h6 class="radio-input"><span class=""></span>Events</h6>
           <h6 class="range hidden">
             Starting After
           	<input placeholder="Pick a date" data-input>
           </h6>
 
           <div class="waypoints-wrapper">
-            <span><h6>Your Waypoints</h6><img class="icon" src="dist/images/icons/itinerary-white.png" alt=""></span>
+            <span><h6 class="hidden-xs hidden-sm">Your Waypoints</h6><img class="icon" src="dist/images/icons/itinerary-white.png" alt=""></span>
           </div>
         </div>
       </div>
@@ -1103,7 +1103,7 @@
         </ul>
       </section>
 
-      <section class="events">
+      <section id="events" class="events">
         <h4>Time sensitive events in Austin</h4>
         <ul>
 
@@ -1116,9 +1116,9 @@
         <h3>Not seeing what you need?</h3>
         <h5>Here are some resources that locals use to help them out</h5>
 
-        <div class="resources col-xs-12">
+        <div class="resources">
           <div class="row">
-            <div class="resource col-xs-4">
+            <div class="resource">
               <img src="http://blackpaintmusic.com/wp-content/uploads/2013/02/do512-logo-340.jpg" alt="">
               <div class="description">
                 <h4>Do512</h4>
@@ -1130,7 +1130,7 @@
                 <a class="button" href="http://do512.com/">do512</a>
               </div>
             </div>
-            <div class="resource col-xs-4">
+            <div class="resource">
               <img src="https://s3-media2.fl.yelpcdn.com/assets/srv0/www_pages/95212dafe621/assets/img/brand_guidelines/yelp-2c.png" alt="">
               <div class="description">
                 <h4>Yelp — Austin</h4>
@@ -1143,7 +1143,7 @@
                 <a class="button" href="https://www.yelp.com/search?find_loc=Austin,+TX,+USA">yelp</a>
               </div>
             </div>
-            <div class="resource col-xs-4">
+            <div class="resource">
               <img src="http://texspine.com/wp-content/uploads/2012/01/map.jpg" alt="">
               <div class="description">
                 <h4>Google Maps</h4>
@@ -1153,6 +1153,18 @@
                   need near where you are!
                 </p>
                 <a class="button" href="https://www.google.com/maps/place/Austin,+TX/@30.3074625,-98.0335911,10z/data=!3m1!4b1!4m5!3m4!1s0x8644b599a0cc032f:0x5d9b464bd469d57a!8m2!3d30.267153!4d-97.7430608">google maps</a>
+              </div>
+            </div>
+            <div class="resource">
+              <img src="dist/images/footer/austintexas.png" alt="">
+              <div class="description">
+                <h4>Austin Texas Official Site</h4>
+                <p>
+                  A little bit of everything on this site, from some helpful
+                  lists of things to do and see, to upcoming events. Think of it
+                  as this site, unabridged.
+                </p>
+                <a class="button" href="http://www.austintexas.org/visit/">visit austin</a>
               </div>
             </div>
           </div>
@@ -1165,7 +1177,7 @@
     </div>
 
     <script id="thing-template" type="text/x-handlebars-template">
-      <li class="event">
+      <li class="event ">
         <article>
           <div class="name">
             <h4>{{name}}</h4>
