@@ -8,7 +8,6 @@
 
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Oswald:300,400,700" rel="stylesheet">
-    <!-- <link href="https://fonts.googleapis.com/css?family=Playfair+Display|Roboto+Condensed:300,400,700" rel="stylesheet"> -->
     <!-- Place favicon.ico in the root directory -->
 
     <!-- build:css styles/vendor.css -->
@@ -19,7 +18,7 @@
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="dist/styles/main.css">
     <!-- endbuild -->
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/2.0.5/flatpickr.base16_flat.min.css">
   </head>
   <body>
     <!--[if lt IE 10]>
@@ -56,6 +55,9 @@
           <h6 class="dropdown districts">District</h6>
           <!-- <h6 class="radio-input">Austin Exclusives</h6> -->
           <h6 class="radio-input"><span class=""></span>Time Sensitive</h6>
+          <h6 class="range hidden">
+          	<input placeholder="Pick date" data-input>
+          </h6>
 
           <div class="waypoints-wrapper">
             <span><h6>Your Waypoints</h6><img class="icon" src="dist/images/icons/itinerary-white.png" alt=""></span>
@@ -1190,6 +1192,7 @@
 
     <script src="https://cdn.jsdelivr.net/lodash/4.16.1/lodash.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/2.0.5/flatpickr.min.js"></script>
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <!-- endbower -->

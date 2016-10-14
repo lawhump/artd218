@@ -10,6 +10,17 @@ var $ = function $(query) {
   return res;
 };
 
+var get = function get(url, callback) {
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function () {
+    if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+      callback(xmlHttp.responseText);
+    }
+  };
+  xmlHttp.open('GET', url, true); // true for asynchronous
+  xmlHttp.send(null);
+};
+
 var $things = $('.thing');
 var filtered = void 0;
 
@@ -289,6 +300,7 @@ $('nav .radio-input').addEventListener('click', function () {
   };
 
   radioToggled = !radioToggled;
+  $('nav .range').classList.toggle('hidden');
 
   if (radioToggled) {
     showOnlyTimeSensitive();
@@ -390,17 +402,6 @@ $('.waypoints .visited').addEventListener('click', function (e) {
   }
 });
 
-var get = function get(url, callback) {
-  var xmlHttp = new XMLHttpRequest();
-  xmlHttp.onreadystatechange = function () {
-    if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
-      callback(xmlHttp.responseText);
-    }
-  };
-  xmlHttp.open('GET', url, true); // true for asynchronous
-  xmlHttp.send(null);
-};
-
 // document.addEventListener('DOMContentLoaded', () => (event) {
 //
 // });
@@ -412,7 +413,6 @@ var get = function get(url, callback) {
     var place = elem.querySelector('em').innerText;
     var link = elem.querySelector('a').getAttribute('href').toString();
     var blurb = elem.querySelector('span').innerHTML;
-    console.dir(blurb);
 
     var context = {
       name: name,
@@ -432,6 +432,21 @@ var get = function get(url, callback) {
     container.innerHTML = res;
     var events = container.querySelectorAll('.main_container p');
     _.map(events, addEventToDoc);
+  });
+
+  $('nav .range').flatpickr({
+    'clickOpens': true,
+    'mode': 'range',
+    'wrap': true,
+    'onChange': function onChange(dateObj, dateStr, instance) {
+      var date = dateStr.split('-');
+      var dateF = [date[1], date[2], date[0]].join('/');
+      console.log(dateF);
+      // updateEvents();
+      // console.log(dateStr);
+      console.log(instance);
+      instance.input.value = dateF;
+    }
   });
 })();
 //# sourceMappingURL=main.js.map
